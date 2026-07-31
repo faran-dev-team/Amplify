@@ -55,206 +55,206 @@ const TRANSFORMATIONS: Transformation[] = [
     id: "nova-ops",
     featured: true,
     industry: "SaaS",
-    technology: "AI Automation · Growth Systems",
-    timeline: "14 weeks",
-    title: "From Manual Chaos to an Intelligent Growth Engine",
+    technology: "Generative AI · Strategy & Automation",
+    timeline: "Scale tier",
+    title: "From Agency Sprawl to One AI-Native Partner",
     subtitle:
-      "A high-velocity SaaS team replaced fragmented operations with one AI-native system — and watched pipeline compound.",
-    beforeLabel: "Manual Workflow",
-    afterLabel: "AI Automation",
+      "A Series A/B SaaS team replaced five vendors with one growth studio — paid, SEO, content, and automation as one system.",
+    beforeLabel: "Five Agencies",
+    afterLabel: "One Partner",
     beforeImage: "/transformations/featured-before.jpg",
     afterImage: "/transformations/featured-after.jpg",
     coverImage: "/transformations/featured-after.jpg",
     beats: [
       {
         label: "Challenge",
-        body: "Revenue depended on heroic effort. Leads stalled in spreadsheets. Handoffs broke. The team scaled headcount instead of systems.",
+        body: "Growth meant juggling specialists. Quality diluted. Nobody owned the whole system.",
       },
       {
         label: "Insight",
-        body: "The bottleneck wasn't talent — it was intelligence. Signals existed everywhere, but nothing connected them into decisive action.",
+        body: "Growth in 2026 isn't a single channel. It needs AI-native execution across every practice.",
       },
       {
         label: "Strategy",
-        body: "Architect a single growth OS: ingest demand, qualify with AI, route automatically, and compound learning into every campaign.",
+        body: "Move to Scale — multi-channel management, weekly strategy, landing pages, brand kit, and marketing automation.",
       },
       {
         label: "Execution",
-        body: "We unified CRM, ads, and product telemetry, then layered agents that scored, nurtured, and surfaced only high-intent opportunities.",
+        body: "Senior specialists on the account. Transparent pricing. Founder-led when the engagement demanded it.",
       },
       {
         label: "Transformation",
-        body: "Operators stopped chasing noise. The system surfaced clarity — and growth became a measured, repeatable machine.",
+        body: "One partner. Every channel. Built on AI — with outcomes Amplify stands behind.",
       },
     ],
     metrics: [
-      { value: "312%", label: "Qualified Leads Generated" },
-      { value: "68%", label: "Reduction in Manual Operations" },
-      { value: "4.7×", label: "Increase in Conversion Rate" },
+      { value: "$10K", label: "Monthly retainer" },
+      { value: "$5K", label: "Setup investment" },
+      { value: "4hr", label: "Priority response" },
     ],
   },
   {
     id: "aether-care",
     industry: "Healthcare",
-    technology: "Platform · Experience",
-    timeline: "18 weeks",
-    title: "A Clinical Experience Rebuilt for Clarity",
+    technology: "Digital Transformation · Web Development",
+    timeline: "Dominate tier",
+    title: "Modernizing Care Without Adding Another Vendor",
     subtitle:
-      "Patients and providers moved from fragmented portals to one calm, intelligent care platform.",
-    beforeLabel: "Disconnected Portals",
-    afterLabel: "Unified Care Platform",
+      "A telehealth operator needed end-to-end modernization — brand, web, AI workflows, and secure infrastructure.",
+    beforeLabel: "Fragmented Stack",
+    afterLabel: "Unified System",
     beforeImage: "/transformations/health-before.jpg",
     afterImage: "/transformations/archive-health.jpg",
     coverImage: "/transformations/archive-health.jpg",
     beats: [
       {
         label: "Challenge",
-        body: "Critical journeys lived across four tools. Drop-off was invisible. Trust eroded with every extra login.",
+        body: "Patients and providers moved across disconnected tools. Trust eroded with every handoff.",
       },
       {
         label: "Insight",
-        body: "Care is emotional. The interface had to feel as precise as the medicine — not as complex as the bureaucracy.",
+        body: "Healthcare buyers don't need more agencies. They need one partner who can transform the stack.",
       },
       {
         label: "Strategy",
-        body: "Collapse every touchpoint into one secure experience with AI-assisted triage and human escalation paths.",
+        body: "Dominate — full website rebuild, custom AI implementations, cloud & data setup, cybersecurity essentials.",
       },
       {
         label: "Execution",
-        body: "We redesigned intake, scheduling, and results into a continuous narrative — then instrumented every step for outcomes.",
+        body: "Weekly founder call. White-glove account management. Slack for daily ops.",
       },
       {
         label: "Transformation",
-        body: "Completion rates rose. Support volume fell. Patients finally felt guided, not processed.",
+        body: "Startup speed. Enterprise depth. One connected growth system.",
       },
     ],
     metrics: [
-      { value: "2.8×", label: "Operational Efficiency" },
-      { value: "97%", label: "Patient Satisfaction" },
-      { value: "41%", label: "Fewer Support Tickets" },
+      { value: "$20K", label: "Monthly retainer" },
+      { value: "$10K", label: "Setup investment" },
+      { value: "90-day", label: "Setup fee guarantee" },
     ],
   },
   {
     id: "meridian-commerce",
     industry: "E-Commerce",
-    technology: "Growth · Data",
-    timeline: "12 weeks",
-    title: "Turning Traffic Into a Compounding Revenue System",
+    technology: "Paid Media · Analytics · Search",
+    timeline: "Scale tier",
+    title: "Multi-Channel Growth Past $2M",
     subtitle:
-      "A DTC brand replaced campaign guesswork with a measurement-native growth architecture.",
-    beforeLabel: "Campaign Guesswork",
-    afterLabel: "Intelligent Growth Engine",
+      "A DTC brand ready to accelerate — paid, SEO, content, and LinkedIn under one AI-native operating rhythm.",
+    beforeLabel: "Channel Guesswork",
+    afterLabel: "Multi-Channel System",
     beforeImage: "/transformations/commerce-before.jpg",
     afterImage: "/transformations/archive-commerce.jpg",
     coverImage: "/transformations/archive-commerce.jpg",
     beats: [
       {
         label: "Challenge",
-        body: "Spend rose. Attribution lied. Creative winners vanished before the team could scale them.",
+        body: "Spend rose across disconnected channels. Reporting conflicted. Learning slowed.",
       },
       {
         label: "Insight",
-        body: "Growth wasn't a media problem — it was a feedback-loop problem. Learning had to move faster than the market.",
+        body: "The fix wasn't another media buyer. It was one partner across every channel.",
       },
       {
         label: "Strategy",
-        body: "Build a closed-loop engine: creative testing, audience intelligence, and conversion systems as one operating rhythm.",
+        body: "Scale retainer — full multi-channel management, weekly reporting, creative production, CRM integration.",
       },
       {
         label: "Execution",
-        body: "We instrumented the full funnel, automated winner detection, and rebuilt the site for decision-speed.",
+        body: "Honest analytics. Attribution that tells the truth. Creative that ships with the media plan.",
       },
       {
         label: "Transformation",
-        body: "Every dollar now teaches. Efficiency compounded. Revenue stopped depending on lucky weeks.",
+        body: "Growth isn't about doing more. It's about doing the right things, faster.",
       },
     ],
     metrics: [
-      { value: "3.1×", label: "Return on Ad Spend" },
-      { value: "54%", label: "Faster Creative Cycles" },
-      { value: "2.2×", label: "Revenue Growth" },
+      { value: "$10K", label: "Monthly retainer" },
+      { value: "Weekly", label: "Strategy calls" },
+      { value: "4hr", label: "Priority support" },
     ],
   },
   {
     id: "summit-infra",
-    industry: "Construction",
-    technology: "Cloud · Data Infrastructure",
-    timeline: "20 weeks",
-    title: "Operations Unified Across Every Jobsite",
+    industry: "Home Services",
+    technology: "Cloud & Data · MarTech",
+    timeline: "Launch tier",
+    title: "Serious Growth Investment, Without Enterprise Bloat",
     subtitle:
-      "Field teams and headquarters finally shared one source of truth — in real time.",
-    beforeLabel: "Fragmented Systems",
-    afterLabel: "Unified Command Platform",
+      "A home-services operator — via Foreman cross-sell — started with paid and content, then compounded.",
+    beforeLabel: "Ad Hoc Marketing",
+    afterLabel: "Launch System",
     beforeImage: "/capabilities/capability-cloud.png",
     afterImage: "/transformations/archive-build.jpg",
     coverImage: "/transformations/archive-build.jpg",
     beats: [
       {
         label: "Challenge",
-        body: "Schedules lived in email. Costs lived in spreadsheets. Delays were discovered too late to prevent.",
+        body: "Marketing lived in scraps — occasional ads, no reporting cadence, no brand system.",
       },
       {
         label: "Insight",
-        body: "Construction velocity is information velocity. Visibility had to arrive before risk compounded.",
+        body: "Early-stage teams need a serious growth investment, not a Fortune 500 sales motion.",
       },
       {
         label: "Strategy",
-        body: "Centralize project intelligence in a secure cloud platform with live field signals and executive clarity.",
+        body: "Launch — 1–2 channels, monthly strategy, basic brand kit refresh, dashboards, email support.",
       },
       {
         label: "Execution",
-        body: "We migrated critical workflows, designed role-specific views, and wired alerts to the moments that matter.",
+        body: "Global talent. US pricing. Boutique service. Clear KPI triggers on setup fees.",
       },
       {
         label: "Transformation",
-        body: "Leaders stopped reacting. Teams coordinated. Projects finished with fewer surprises.",
+        body: "A foundation ready to graduate into Scale when the pipeline demands it.",
       },
     ],
     metrics: [
-      { value: "36%", label: "Fewer Schedule Overruns" },
-      { value: "5.2×", label: "Faster Decision Cycles" },
-      { value: "29%", label: "Lower Coordination Cost" },
+      { value: "$5K", label: "Monthly retainer" },
+      { value: "$2.5K", label: "Setup investment" },
+      { value: "24hr", label: "Email response" },
     ],
   },
   {
     id: "lumen-brand",
     industry: "Professional Services",
-    technology: "Brand · Digital Experience",
-    timeline: "10 weeks",
-    title: "A Premium Presence That Converts Ambition",
+    technology: "Brand Strategy · Creative Studio · Web",
+    timeline: "One-off → retainer",
+    title: "A Brand System That Matches the Counsel",
     subtitle:
-      "A growing firm needed a digital identity as precise as their counsel.",
-    beforeLabel: "Outdated Website",
-    afterLabel: "Premium Digital Experience",
+      "A growing firm needed positioning, identity, and a site that converts sophisticated buyers.",
+    beforeLabel: "Outdated Presence",
+    afterLabel: "Brand System",
     beforeImage: "/capabilities/capability-brand.png",
     afterImage: "/transformations/archive-brand.jpg",
     coverImage: "/transformations/archive-brand.jpg",
     beats: [
       {
         label: "Challenge",
-        body: "The firm won through relationships — then lost momentum online. The digital presence undercut the expertise.",
+        body: "Expertise was undeniable. The digital presence undercut it.",
       },
       {
         label: "Insight",
-        body: "Trust is visual before it is verbal. The experience had to feel as composed as a partner briefing.",
+        body: "Brand strategy isn't a visual refresh. It's positioning, naming, and a system that sells.",
       },
       {
         label: "Strategy",
-        body: "Rebuild brand and site as one editorial system — clarity, proof, and conversion in a single narrative.",
+        body: "Brand identity + kit, then website rebuild — one-off projects with a clear path into retainer.",
       },
       {
         label: "Execution",
-        body: "We crafted identity, motion language, and a site architecture that guides sophisticated buyers to action.",
+        body: "Creative studio and web development shipped together. No handoff gaps between agencies.",
       },
       {
         label: "Transformation",
-        body: "Inbound quality rose. Sales conversations started further along. The brand finally matched the work.",
+        body: "The firm finally looks like the room it already sits in.",
       },
     ],
     metrics: [
-      { value: "2.4×", label: "Qualified Inbound" },
-      { value: "63%", label: "Longer Session Depth" },
-      { value: "1.9×", label: "Proposal Conversion" },
+      { value: "$3.5K+", label: "Brand identity + kit" },
+      { value: "$5K+", label: "Website rebuild" },
+      { value: "90-day", label: "Setup fee guarantee" },
     ],
   },
 ];
@@ -572,7 +572,7 @@ function MeasuredImpact({
         className="mb-6 text-[11px] font-medium uppercase tracking-[0.28em] text-white/30"
         style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
       >
-        Measured Impact
+        Engagement Profile
       </motion.p>
       <div className="grid gap-8 sm:grid-cols-3">
         {metrics.map((m, i) => (
@@ -1023,7 +1023,7 @@ export function TransformationArchive() {
     <section
       ref={sectionRef}
       id="work"
-      aria-label="Transformation archive"
+      aria-label="How growth actually happens"
       className="relative z-0 -mt-24 overflow-hidden pb-40 pt-12 md:-mt-32 md:pb-52 md:pt-16"
     >
       <div
@@ -1044,7 +1044,7 @@ export function TransformationArchive() {
             className="mb-4 text-[12px] font-medium uppercase tracking-[0.3em] text-[#A855F7]/75"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Classified Growth Record
+            Strategic Moat
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 28 }}
@@ -1055,7 +1055,7 @@ export function TransformationArchive() {
             className="max-w-3xl text-[2.75rem] font-medium leading-[1.05] tracking-[-0.035em] text-white md:text-6xl lg:text-7xl"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            Transformation Archive
+            How growth actually happens.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 18 }}
@@ -1066,8 +1066,8 @@ export function TransformationArchive() {
             className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/45 md:mt-6 md:text-base"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Evidence of engineered growth. Each file documents a business
-            transformed — from constraint to measurable advantage.
+            AI-native execution. Founder-led premium. Transparent pricing.
+            Outcomes we stand behind with our own money.
           </motion.p>
         </div>
 
@@ -1092,13 +1092,13 @@ export function TransformationArchive() {
               className="mb-3 text-[12px] font-medium uppercase tracking-[0.3em] text-[#A855F7]/70"
               style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
             >
-              The Archive
+              Engagement Models
             </p>
             <h3
               className="max-w-2xl text-[28px] font-medium tracking-[-0.03em] text-white md:text-[36px]"
               style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             >
-              Further chapters of measurable change
+              Launch. Scale. Dominate.
             </h3>
           </motion.div>
 

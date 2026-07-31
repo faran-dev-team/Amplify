@@ -264,7 +264,7 @@ function ClosingCTA({
   return (
     <motion.a
       ref={ref}
-      href="mailto:hello@amplify.studio"
+      href="mailto:hello@amplifyitmedia.com"
       onMouseMove={handleMove}
       onMouseEnter={() => onHoverChange(true)}
       onMouseLeave={handleLeave}
@@ -308,7 +308,7 @@ function ClosingCTA({
         className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[280%] group-hover:opacity-100"
       />
 
-      <span className="relative z-10">Start the Conversation</span>
+      <span className="relative z-10">Ready when you are.</span>
     </motion.a>
   );
 }
@@ -470,7 +470,7 @@ function OriginPoint({ active }: { active: boolean }) {
             : { duration: 0.8, delay: 1.2, ease: easeOutExpo }
         }
       />
-      <span className="sr-only">The journey returns to where it began</span>
+      <span className="sr-only">Growth, amplified. One partner. Every channel. Built on AI.</span>
     </div>
   );
 }
@@ -502,7 +502,7 @@ export function ClosingChapter() {
     <footer
       ref={sectionRef}
       id="contact"
-      aria-label="Begin your journey with Amplify"
+      aria-label="Contact Amplify IT & Media"
       className="relative z-0 -mt-24 overflow-hidden pb-16 pt-8 md:-mt-32 md:pb-20 md:pt-12"
     >
       {/* Absolute black descent — calmest atmosphere */}
@@ -533,7 +533,7 @@ export function ClosingChapter() {
             className="mb-5 text-[11px] font-medium uppercase tracking-[0.34em] text-[#A855F7]/60 md:mb-6"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            The Beginning
+            Growth, amplified.
           </motion.p>
 
           <motion.h2
@@ -545,7 +545,7 @@ export function ClosingChapter() {
             className="mx-auto max-w-4xl text-[2.75rem] font-medium leading-[1.05] tracking-[-0.04em] text-white md:text-6xl lg:text-[5rem] xl:text-[5.5rem]"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            Let&apos;s Build What&apos;s Next.
+            Let&apos;s grow.
           </motion.h2>
 
           <motion.p
@@ -557,8 +557,7 @@ export function ClosingChapter() {
             className="mx-auto mt-6 max-w-lg text-[15px] leading-relaxed text-white/35 md:mt-7 md:text-base"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Every transformation begins with one conversation — calm, clear,
-            and built around your business.
+            One partner. Every channel. Built on AI. The next move is yours.
           </motion.p>
         </div>
 
@@ -598,8 +597,9 @@ export function ClosingChapter() {
             className="text-[17px] leading-[1.65] tracking-[-0.015em] text-white/45 md:text-[19px] md:leading-[1.7]"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            We believe meaningful growth happens when intelligent technology,
-            thoughtful design, and ambitious people work together.
+            For US businesses tired of juggling five agencies to grow — Amplify
+            delivers everything with the speed of a startup and the depth of an
+            enterprise team.
           </motion.p>
         </div>
 
@@ -611,17 +611,17 @@ export function ClosingChapter() {
           className="mb-12 flex flex-col items-center gap-3 md:mb-14"
         >
           <a
-            href="mailto:hello@amplify.studio"
+            href="mailto:hello@amplifyitmedia.com"
             className="text-[14px] tracking-[0.02em] text-white/50 transition-colors duration-400 hover:text-[#E9D5FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/45"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            hello@amplify.studio
+            hello@amplifyitmedia.com
           </a>
           <p
             className="text-[13px] tracking-[0.06em] text-white/25"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Remote · Global
+            Global talent · US pricing
           </p>
         </motion.div>
 
@@ -667,7 +667,7 @@ export function ClosingChapter() {
           className="mt-8 text-[11px] tracking-[0.08em] text-white/18"
           style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
         >
-          © {new Date().getFullYear()} Amplify. All rights reserved.
+          © {new Date().getFullYear()} Amplify IT & Media. Growth, amplified.
         </motion.p>
       </div>
     </footer>

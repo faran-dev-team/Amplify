@@ -50,31 +50,31 @@ const VOICES: Voice[] = [
     industry: "SaaS",
     portrait: "/voices/founder-02.jpg",
     opening:
-      "Before partnering with Amplify we spent more time managing disconnected systems than growing the business.",
+      "We were tired of juggling five agencies to grow. We needed one partner across every channel.",
     chapters: [
       {
         label: "Challenge",
-        body: "We were winning customers and losing clarity. Every department ran its own tools. Growth felt loud, expensive, and strangely fragile.",
+        body: "Specialists everywhere. Ownership nowhere. Quality diluted the moment we tried to go full-service with the wrong shop.",
       },
       {
         label: "Why Amplify",
-        body: "They didn't pitch a stack of features. They asked sharper questions about how decisions actually moved through our company.",
+        body: "They're AI-native — not AI-adopted. And founder-led when the engagement mattered. Not a call center. Not offshored.",
       },
       {
         label: "Working Together",
-        body: "The partnership felt calm and precise. Weekly conversations stayed focused on outcomes. Nothing was theatrical. Everything was intentional.",
+        body: "Senior specialists on the account. Weekly strategy. Transparent pricing. No theater.",
       },
       {
         label: "Transformation",
-        body: "They helped us rethink the way our company operates — not just the technology behind it. Intelligence stopped being a slide and became our operating rhythm.",
+        body: "Paid, SEO, content, and automation finally moved as one system — with the speed of a startup and the depth of an enterprise team.",
       },
       {
         label: "Life After",
-        body: "Today our growth feels predictable instead of reactive. The team moves with shared context. I finally trust the numbers in the room.",
+        body: "Growth feels deliberate. One partner. Every channel. Built on AI.",
       },
     ],
     reflection:
-      "What I value most is how little drama there was. Amplify treated our business like something worth understanding — not something to decorate.",
+      "The best marketing tool of 2026 isn't a tool. It's a partner who understands your business.",
   },
   {
     id: "marcus",
@@ -84,31 +84,31 @@ const VOICES: Voice[] = [
     industry: "E-Commerce",
     portrait: "/voices/founder-01.jpg",
     opening:
-      "We didn't need another agency. We needed a partner who could make growth measurable again.",
+      "We didn't need another agency. We needed multi-channel growth we could stand behind.",
     chapters: [
       {
         label: "Challenge",
-        body: "Spend climbed while learning slowed. Campaigns lived in isolation from product and conversion.",
+        body: "Past $2M, channel sprawl became expensive. Reporting conflicted. Learning slowed.",
       },
       {
         label: "Why Amplify",
-        body: "They spoke in systems, not deliverables. That language matched how we actually run the company.",
+        body: "Scale was built for teams ready to accelerate — paid, SEO, content, LinkedIn, creative, automation.",
       },
       {
         label: "Working Together",
-        body: "They embedded into our rhythm without becoming noise. Clear ownership. Quiet accountability.",
+        body: "Priority support. Honest analytics. Weekly calls that stayed on outcomes.",
       },
       {
         label: "Transformation",
-        body: "Creative, media, and conversion finally moved as one loop. Decisions got faster because the feedback got honest.",
+        body: "Media, creative, and conversion finally shared one operating rhythm.",
       },
       {
         label: "Life After",
-        body: "Revenue is no longer a weekly surprise. It is a compound outcome we can steer.",
+        body: "Growth isn't about doing more. It's about doing the right things, faster.",
       },
     ],
     reflection:
-      "The relationship feels like infrastructure — steady, invisible when it works, indispensable when pressure rises.",
+      "Transparent pricing. Outcomes they stand behind. That's rare.",
   },
   {
     id: "amira",
@@ -118,31 +118,31 @@ const VOICES: Voice[] = [
     industry: "Healthcare",
     portrait: "/voices/founder-04.jpg",
     opening:
-      "In healthcare, trust is the product. Our digital experience had to feel as careful as our clinical work.",
+      "In healthcare, trust is the product. We needed digital transformation without another vendor pile-up.",
     chapters: [
       {
         label: "Challenge",
-        body: "Patients navigated four portals to complete one journey. Friction wasn't just inconvenient — it eroded confidence.",
+        body: "Modernization meant five SOWs and zero accountability for the whole journey.",
       },
       {
         label: "Why Amplify",
-        body: "They understood that elegance and compliance aren't opposites. Precision was the brief.",
+        body: "Dominate covers website rebuild, custom AI, cloud & data, and cybersecurity essentials — under one partner.",
       },
       {
         label: "Working Together",
-        body: "Workshops were rigorous. Prototypes were honest. They protected the user without ignoring operations.",
+        body: "Weekly founder call. White-glove account management. Slack for daily ops.",
       },
       {
         label: "Transformation",
-        body: "We collapsed complexity into one calm path. Support volume fell because confusion finally had somewhere to go.",
+        body: "End-to-end modernization without diluting quality across specialists.",
       },
       {
         label: "Life After",
-        body: "Providers spend less time explaining the tools. Patients feel guided. That changes everything.",
+        body: "Startup speed. Enterprise depth. One connected system.",
       },
     ],
     reflection:
-      "Amplify didn't make us louder. They made us clearer — and clarity is how we earn trust.",
+      "Founder-led premium isn't a slogan. Measm and Zainab show up.",
   },
   {
     id: "jordan",
@@ -152,65 +152,65 @@ const VOICES: Voice[] = [
     industry: "Professional Services",
     portrait: "/voices/founder-03.jpg",
     opening:
-      "Our counsel was sophisticated. Our digital presence was not. That gap was costing us the right conversations.",
+      "Our counsel was sophisticated. Our brand system was not. That gap was costing the right conversations.",
     chapters: [
       {
         label: "Challenge",
-        body: "Inbound arrived, but rarely at the altitude we wanted. The brand undercut the work.",
+        body: "Positioning lived in partners' heads. The website undercut the work.",
       },
       {
         label: "Why Amplify",
-        body: "They treated brand and conversion as one narrative system — not a visual refresh.",
+        body: "Brand strategy, creative studio, and web development from one studio — not three vendors.",
       },
       {
         label: "Working Together",
-        body: "Editorial discipline. Restraint. Every page earned its place. No decorative excess.",
+        body: "Decisive. Precise. Understated. The work spoke louder than the marketing.",
       },
       {
         label: "Transformation",
-        body: "Prospects arrive further along. Meetings start with substance instead of education.",
+        body: "Identity, site, and conversion narrative finally matched the firm.",
       },
       {
         label: "Life After",
-        body: "The firm finally looks like the room we already sit in.",
+        body: "Prospects arrive further along. Meetings start with substance.",
       },
     ],
     reflection:
-      "I never felt sold to. I felt edited — and that is rarer than people admit.",
+      "Here's what most agencies won't tell you: sprawl is the product. Amplify is the fix.",
   },
   {
     id: "priya",
     name: "Priya Nair",
     role: "VP of Operations",
     company: "Summit Infra",
-    industry: "Construction",
+    industry: "Home Services",
     portrait: "/voices/founder-05.jpg",
     opening:
-      "Field reality and office reports lived in different worlds. We needed one source of truth before the next delay found us.",
+      "We came through Foreman. We stayed because Launch made serious growth investment feel possible.",
     chapters: [
       {
         label: "Challenge",
-        body: "Schedules, costs, and risk signals arrived too late to prevent anything.",
+        body: "Marketing was ad hoc. Budget existed. A system did not.",
       },
       {
         label: "Why Amplify",
-        body: "They mapped the operational truth first — then designed the system around it.",
+        body: "Launch gave us 1–2 channels, monthly strategy, dashboards, and a brand kit refresh — without enterprise bloat.",
       },
       {
         label: "Working Together",
-        body: "Practical. Patient with complexity. Unwilling to ship theater.",
+        body: "Global talent. US pricing. Boutique service. Clear response times.",
       },
       {
         label: "Transformation",
-        body: "Leaders stopped reacting to surprises. Teams coordinated against a shared picture.",
+        body: "A foundation we can graduate into Scale when the pipeline demands it.",
       },
       {
         label: "Life After",
-        body: "Projects finish with fewer unexplained days. That is the quiet win operations people care about.",
+        body: "Sister product Foreman proved they build real technology. Amplify proved they grow businesses.",
       },
     ],
     reflection:
-      "Amplify gave us visibility with dignity — no dashboards for show, only signals we act on.",
+      "Ready when you are — and they meant it.",
   },
 ];
 
@@ -689,7 +689,7 @@ function ClosingStatement({ active }: { active: boolean }) {
         className="text-[26px] font-medium leading-[1.3] tracking-[-0.03em] text-white md:text-[34px] lg:text-[38px]"
         style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
       >
-        Every transformation begins with a conversation.
+        Ready when you are.
       </motion.p>
 
       <div className="pointer-events-none relative mx-auto mt-12 h-28 w-full max-w-xs md:mt-14 md:h-32">
@@ -769,7 +769,7 @@ export function VoicesBehindGrowth() {
     <section
       ref={sectionRef}
       id="about"
-      aria-label="Founder perspectives"
+      aria-label="Founder-led premium perspectives"
       className="relative z-0 -mt-24 overflow-hidden pb-40 pt-12 md:-mt-32 md:pb-52 md:pt-16"
     >
       {/* Warmer, calmer veil — human chapter */}
@@ -795,7 +795,7 @@ export function VoicesBehindGrowth() {
             className="mb-4 text-[12px] font-medium uppercase tracking-[0.3em] text-[#C4A484]/75"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Executive Journal
+            Founder-Led Premium
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 28 }}
@@ -817,8 +817,8 @@ export function VoicesBehindGrowth() {
             className="mt-5 max-w-lg text-[15px] leading-relaxed text-white/40 md:mt-6 md:text-base"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Excerpts from conversations with founders and operators who trusted
-            Amplify with meaningful business decisions.
+            Placeholder perspectives from the ICP Amplify serves — US B2B teams
+            who chose one AI-native partner over agency sprawl.
           </motion.p>
         </div>
 

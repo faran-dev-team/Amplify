@@ -57,33 +57,35 @@ const METRICS: Metric[] = [
   {
     id: "revenue",
     value: 700,
+    prefix: "$",
     suffix: "K+",
-    title: "Revenue Delivered",
+    title: "Delivered",
     description:
-      "Helping ambitious businesses accelerate measurable growth.",
+      "Verifiable track record across growth engagements.",
     pathProgress: 0.26,
     terrace: "mt-0",
     seat: "md:justify-self-start md:ml-[2%]",
   },
   {
-    id: "multiplier",
-    value: 2.4,
-    decimals: 1,
-    suffix: "×",
-    title: "Growth Multiplier",
+    id: "government",
+    value: 150,
+    prefix: "$",
+    suffix: "K+",
+    title: "US Government Project",
     description:
-      "Compounding systems that turn attention into durable pipeline.",
+      "Enterprise-quality delivery on an ongoing federal engagement.",
     pathProgress: 0.52,
     terrace: "mt-10 md:mt-28 lg:mt-36",
     seat: "md:justify-self-center",
   },
   {
-    id: "retention",
-    value: 98,
-    suffix: "%",
-    title: "Client Retention",
+    id: "upwork",
+    value: 100,
+    prefix: "$",
+    suffix: "K+",
+    title: "Verified Upwork Earnings",
     description:
-      "Partnerships built on precision, clarity, and outcomes that last.",
+      "Proof we ship real work — not decks.",
     pathProgress: 0.78,
     terrace: "mt-10 md:mt-56 lg:mt-72",
     seat: "md:justify-self-end md:mr-[2%]",
@@ -814,7 +816,7 @@ export function SignalOutcomes() {
     <section
       ref={sectionRef}
       id="outcomes"
-      aria-label="Measurable outcomes"
+      aria-label="Verifiable track record"
       className="relative z-0 -mt-[18vh] min-h-[110vh] overflow-hidden pb-32 pt-[18vh] md:-mt-[12vh] md:min-h-[130vh] md:pb-48 md:pt-[14vh]"
     >
       {/* Continuous midnight veil — no hard section break */}

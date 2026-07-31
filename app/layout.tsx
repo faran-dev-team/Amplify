@@ -23,9 +23,9 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Amplify IT & Media",
+  title: "Amplify IT & Media | AI-Native Growth Studio",
   description:
-    "AI Native Growth Studio. Intelligent growth systems for ambitious businesses.",
+    "Growth, amplified. One partner. Every channel. Built on AI. The AI-native growth studio for US businesses tired of juggling five agencies — ads, content, SEO, brand, websites, cloud, generative AI, cybersecurity, and digital transformation.",
 };
 
 export default function RootLayout({

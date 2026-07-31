@@ -49,8 +49,8 @@ const EXCHANGES: Exchange[] = [
     question:
       "What usually prevents ambitious companies from taking the next step?",
     answer: [
-      "Rarely is it a lack of ambition. More often it's uncertainty — about whether a partner will truly understand the business, or simply apply a template.",
-      "The companies we work with aren't looking for another vendor. They're looking for clarity before commitment.",
+      "Agency sprawl. Five vendors. Diluted quality. No one owns the whole system.",
+      "US businesses with $5K–$25K/month marketing budgets don't need another specialist. They need one AI-native growth studio.",
       "That hesitation is healthy. It means the decision matters.",
     ],
   },
@@ -60,9 +60,9 @@ const EXCHANGES: Exchange[] = [
     question:
       "We already have an internal team. How would Amplify complement our existing workflow?",
     answer: [
-      "We don't replace the people who know your business best. We amplify them.",
-      "Your team brings institutional knowledge. We bring systems thinking, AI architecture, and a outside perspective sharpened by building growth engines across industries.",
-      "The best partnerships feel like adding a specialized layer — not inserting a second company into the room.",
+      "We don't replace the people who know your business. We amplify them.",
+      "Your team brings institutional knowledge. We bring AI-native execution across thirteen practices — with senior specialists on every account.",
+      "Founder-led premium when the engagement demands it. Measm and Zainab are personally involved. Not a call center. Not offshored.",
     ],
   },
   {
@@ -70,9 +70,9 @@ const EXCHANGES: Exchange[] = [
     category: "Technology",
     question: "Can you work with our current technology stack?",
     answer: [
-      "Almost always. We design around what you already have — not against it.",
-      "Rip-and-replace theater is expensive and usually unnecessary. We integrate with your stack, strengthen the weak seams, and introduce intelligence where it compounds.",
-      "If something genuinely needs to change, we'll say so plainly — and explain why.",
+      "Almost always. MarTech, CRM integrations, cloud & data, and automation are built to strengthen what you already run.",
+      "Rip-and-replace theater is expensive. We integrate, then introduce generative AI and workflows where they compound.",
+      "If something needs to change, we'll say so plainly — and explain why.",
     ],
   },
   {
@@ -80,9 +80,9 @@ const EXCHANGES: Exchange[] = [
     category: "Strategy",
     question: "What makes Amplify different from a traditional agency?",
     answer: [
-      "Agencies deliver projects. We build operating systems for growth.",
-      "That means fewer decks, more durable infrastructure. Less campaign thinking. More compound advantage.",
-      "You're not hiring us to make something look finished. You're partnering with us to make growth feel inevitable.",
+      "We're AI-native. Not AI-adopted. Not AI-augmented. Native. Built in.",
+      "One partner. Every channel. Unlike shops that specialize in one channel or dilute quality as generic full-service.",
+      "Sister product Foreman proves we build real technology. Verifiable track record: $700K+ delivered, $150K+ US government project ongoing, $100K+ verified Upwork earnings.",
     ],
   },
   {
@@ -90,9 +90,9 @@ const EXCHANGES: Exchange[] = [
     category: "Growth",
     question: "How do AI systems actually improve operational efficiency?",
     answer: [
-      "Not by adding dashboards no one checks. By removing friction from decisions that already happen every day.",
-      "When intelligence sits inside the workflow — routing, forecasting, prioritization, personalization — teams stop spending energy on coordination and start spending it on judgment.",
-      "Efficiency isn't speed for its own sake. It's reclaiming attention for work that only humans can do.",
+      "Generative AI for custom apps, chatbots, and production workflows. Strategy & automation for growth systems that remove friction.",
+      "Your marketing, ten times faster — without adding dashboards nobody checks.",
+      "Efficiency is reclaiming attention for judgment only humans can do.",
     ],
   },
   {
@@ -100,9 +100,9 @@ const EXCHANGES: Exchange[] = [
     category: "Process",
     question: "What does collaboration look like after launch?",
     answer: [
-      "Launch is a milestone, not a farewell.",
-      "We stay close through a calm operating cadence — reviewing signals, refining systems, and adjusting as the business evolves.",
-      "The goal is a partnership that feels steady under pressure, not theatrical after every release.",
+      "Launch is a milestone, not a farewell — and Launch is also our $5K/month entry retainer.",
+      "Every tier includes reporting. Scale and Dominate add weekly strategy. Dominate adds weekly founder calls and Slack for daily ops.",
+      "90-day money-back guarantee on setup fees with KPI triggers. 30-day cancellation notice after the first 90 days. No lock-in beyond that.",
     ],
   },
   {
@@ -111,8 +111,8 @@ const EXCHANGES: Exchange[] = [
     question: "How involved will our team need to be?",
     answer: [
       "Present for the decisions that matter. Protected from the noise that doesn't.",
-      "We ask for clarity on goals, access to context, and honest feedback. We don't ask your leadership to become project managers.",
-      "The right level of involvement feels like stewardship — not another full-time job.",
+      "Discovery call (30 min) → custom proposal (48 hours) → founder demo (45 min) → signed contract → kickoff (48 hours).",
+      "Typical close: 14–21 days. Typical first-year contract: $60K–$240K.",
     ],
   },
   {
@@ -120,8 +120,8 @@ const EXCHANGES: Exchange[] = [
     category: "Timeline",
     question: "How quickly can we expect measurable results?",
     answer: [
-      "Some signals appear early — clearer workflows, faster cycles, sharper visibility. Compound outcomes take longer, and we won't pretend otherwise.",
-      "We set expectations against your reality, not a generic timeline slide.",
+      "We set expectations against your reality — Launch, Scale, or Dominate — not a generic timeline slide.",
+      "Setup fees split 50% signing, 50% delivery milestone. Outcomes we stand behind with our own money.",
       "If we can't see a path to meaningful measurement, we shouldn't begin.",
     ],
   },
@@ -132,8 +132,8 @@ const EXCHANGES: Exchange[] = [
     question: "What happens when we're ready?",
     answer: [
       "We begin with a conversation.",
-      "No pitch theater. No premature proposals. Just a careful look at where you are, where you intend to go, and whether Amplify is the right partner for that journey.",
-      "If it is, we'll know — and so will you.",
+      "No pitch theater. A careful look at where you are, where you intend to go, and whether Amplify is the right partner.",
+      "The next move is yours.",
     ],
   },
 ];
@@ -577,7 +577,7 @@ export function ConversationBeforeBegin() {
             className="mb-4 text-[12px] font-medium uppercase tracking-[0.32em] text-[#A855F7]/70"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Before We Build Together
+            Launch · Scale · Dominate
           </motion.p>
 
           <motion.h2
@@ -601,7 +601,7 @@ export function ConversationBeforeBegin() {
             className="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-white/38 md:mt-6 md:text-base"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            The questions founders ask when the decision finally becomes real.
+            Pricing, process, and partnership — answered straight.
           </motion.p>
         </div>
 
@@ -647,14 +647,14 @@ export function ConversationBeforeBegin() {
               className="text-[13px] tracking-[0.04em] text-white/30"
               style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
             >
-              Still curious?
+              The next move is yours.
             </p>
             <a
               href="#contact"
               className="mt-3 inline-flex items-center gap-2 text-[22px] font-medium tracking-[-0.025em] text-[#E9D5FF] transition-colors duration-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/50 md:text-[26px]"
               style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             >
-              Let&apos;s talk
+              Let&apos;s grow.
               <motion.span
                 aria-hidden
                 className="inline-block text-[18px] text-[#A855F7]/80"

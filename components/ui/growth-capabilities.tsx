@@ -37,50 +37,50 @@ type Capability = {
 const CAPABILITIES: Capability[] = [
   {
     id: "ai",
-    title: "AI & Automation",
+    title: "Generative AI",
     description:
-      "Intelligent workflows, AI agents, and business automation that compound.",
-    cta: "Explore AI Systems",
+      "Custom AI apps, chatbots, and production workflows — AI-native across every practice, not bolted on.",
+    cta: "Explore Generative AI",
     image: "/capabilities/capability-ai.png",
     pathProgress: 0.22,
     flip: false,
   },
   {
     id: "software",
-    title: "Custom Software Development",
+    title: "Digital Transformation",
     description:
-      "Enterprise platforms, SaaS products, and applications built to scale.",
-    cta: "Explore Platforms",
+      "End-to-end modernization — strategy, automation, and growth systems that replace agency sprawl.",
+    cta: "Explore Transformation",
     image: "/capabilities/capability-software.png",
     pathProgress: 0.38,
     flip: true,
   },
   {
     id: "cloud",
-    title: "Cloud & Data Infrastructure",
+    title: "Cloud & Data",
     description:
-      "Cloud architecture, secure infrastructure, and modern data systems.",
-    cta: "Explore Infrastructure",
+      "Infrastructure, data pipelines, and warehousing — with cybersecurity essentials for growing businesses.",
+    cta: "Explore Cloud & Data",
     image: "/capabilities/capability-cloud.png",
     pathProgress: 0.54,
     flip: false,
   },
   {
     id: "growth",
-    title: "Digital Growth Systems",
+    title: "Paid Media",
     description:
-      "SEO, paid media, analytics, and conversion systems engineered as one.",
-    cta: "Explore Growth",
+      "Google, Meta, LinkedIn, and GPT-native ads — unified with content, search, analytics, and MarTech.",
+    cta: "Explore Paid Media",
     image: "/capabilities/capability-growth.png",
     pathProgress: 0.7,
     flip: true,
   },
   {
     id: "brand",
-    title: "Brand & Digital Experience",
+    title: "Brand Strategy",
     description:
-      "Premium websites, digital products, visual identity, and UI/UX.",
-    cta: "Explore Experience",
+      "Positioning, naming, and brand systems — shipped with creative studio work and web development.",
+    cta: "Explore Brand Strategy",
     image: "/capabilities/capability-brand.png",
     pathProgress: 0.86,
     flip: false,
@@ -660,7 +660,7 @@ export function GrowthCapabilities() {
     <section
       ref={sectionRef}
       id="services"
-      aria-label="AI-native capabilities"
+      aria-label="Thirteen practices. One partner."
       className="relative z-0 -mt-24 overflow-hidden pb-36 pt-8 md:-mt-32 md:pb-48 md:pt-12"
     >
       {/* Continuous midnight — no section break */}
@@ -683,7 +683,7 @@ export function GrowthCapabilities() {
             className="mb-4 text-[12px] font-medium uppercase tracking-[0.3em] text-[#A855F7]/75"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Operating System
+            Thirteen Practices
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 28 }}
@@ -696,7 +696,7 @@ export function GrowthCapabilities() {
             className="max-w-3xl text-[2.75rem] font-medium leading-[1.05] tracking-[-0.035em] text-white md:text-6xl lg:text-7xl"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            The Growth Engine
+            One partner. Every channel.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 18 }}
@@ -709,7 +709,7 @@ export function GrowthCapabilities() {
             className="mt-5 max-w-lg text-[15px] leading-relaxed text-white/45 md:mt-6 md:text-base"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Five intelligent modules. One continuous system for modern growth.
+            We sell sharp positioning. We deliver broad capability — AI-native across every practice.
           </motion.p>
         </div>
 

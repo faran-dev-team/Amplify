@@ -115,7 +115,7 @@ const NODES: EcosystemNode[] = [
   },
   {
     id: "technology",
-    label: "Technology",
+    label: "Tech Startups",
     kind: "industry",
     pathProgress: 0.54,
     dx: 840,
@@ -137,7 +137,7 @@ const NODES: EcosystemNode[] = [
   },
   {
     id: "finance",
-    label: "Finance",
+    label: "Property Management",
     kind: "industry",
     pathProgress: 0.62,
     dx: 1040,
@@ -148,7 +148,7 @@ const NODES: EcosystemNode[] = [
   },
   {
     id: "construction",
-    label: "Construction",
+    label: "Consultancies",
     kind: "industry",
     pathProgress: 0.68,
     dx: 440,
@@ -192,7 +192,7 @@ const NODES: EcosystemNode[] = [
   },
   {
     id: "manufacturing",
-    label: "Manufacturing",
+    label: "Law Firms",
     kind: "industry",
     pathProgress: 0.84,
     dx: 980,
@@ -1021,7 +1021,7 @@ export function TrustEcosystem() {
     <section
       ref={sectionRef}
       id="network"
-      aria-label="Ecosystem of trusted partnerships"
+      aria-label="Who we serve"
       className="relative z-0 -mt-24 overflow-hidden pb-40 pt-10 md:-mt-32 md:pb-52 md:pt-14"
     >
       <div
@@ -1043,7 +1043,7 @@ export function TrustEcosystem() {
             className="mb-4 text-[12px] font-medium uppercase tracking-[0.3em] text-[#A855F7]/75"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            The Network
+            Who We Serve
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 28 }}
@@ -1054,7 +1054,7 @@ export function TrustEcosystem() {
             className="max-w-3xl text-[2.75rem] font-medium leading-[1.05] tracking-[-0.035em] text-white md:text-6xl lg:text-7xl"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            Growing With Industry Leaders
+            Built for ambitious US businesses.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 18 }}
@@ -1065,10 +1065,8 @@ export function TrustEcosystem() {
             className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/45 md:mt-6 md:text-base"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Every partnership strengthens the network. From global platforms to
-            ambitious businesses, the companies connected here represent
-            relationships built through measurable outcomes, long-term
-            collaboration, and technology-driven growth.
+            US-based B2B companies with $2M–$50M revenue and $5K–$25K/month
+            marketing budgets — tired of juggling five agencies to grow.
           </motion.p>
         </div>
 
@@ -1081,7 +1079,7 @@ export function TrustEcosystem() {
             className="text-[11px] font-medium uppercase tracking-[0.24em] text-white/30"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Global Platforms
+            Acquisition Channels
           </motion.p>
           <span
             aria-hidden
@@ -1094,7 +1092,7 @@ export function TrustEcosystem() {
             className="text-[11px] font-medium uppercase tracking-[0.24em] text-white/30"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Industries Served
+            Primary ICP
           </motion.p>
         </div>
 

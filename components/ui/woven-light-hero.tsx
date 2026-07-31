@@ -6,14 +6,14 @@ import { useRef } from "react";
 import { WovenCanvas } from "@/components/ui/woven-canvas";
 
 const HEADLINES = [
-  ["Scale,", "Amplified."],
-  ["Growth,", "Engineered."],
-  ["Built to", "Compound."],
-  ["Intelligence", "at Work."],
-  ["Systems", "That Scale."],
-  ["Precision", "at Scale."],
-  ["Make Scale", "Inevitable."],
-  ["The Growth", "OS."],
+  ["Growth,", "Amplified."],
+  ["One partner.", "Every channel."],
+  ["Your marketing,", "ten times faster."],
+  ["Built on", "AI."],
+  ["We're", "AI-native."],
+  ["Founder-led.", "Premium."],
+  ["One partner.", "Every channel."],
+  ["Growth,", "Amplified."],
 ] as const;
 
 /** High-contrast accent cycle — vivid, never washed-out white */
@@ -193,7 +193,7 @@ export const WovenLightHero = () => {
             className="mb-3 text-left text-[12px] font-medium uppercase tracking-[0.32em] text-[#C4B5FD] md:mb-4 md:text-[13px]"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            AI Native Growth Studio
+            AI-Native Growth Studio
           </motion.p>
 
           <RotatingHeadline ready={headlineReady} active={inView} />
@@ -208,13 +208,13 @@ export const WovenLightHero = () => {
               fillClassName="bg-[#A855F7]"
               className="w-full whitespace-nowrap border-white/25 sm:w-auto sm:shrink-0 hover:border-[#C084FC] hover:shadow-[0_0_28px_rgba(168,85,247,0.4)]"
             >
-              Start Your Growth Strategy
+              Let&apos;s grow.
             </SweepButton>
             <SweepButton
               fillClassName="bg-[#7C3AED]"
               className="w-full whitespace-nowrap border-white/25 sm:w-auto sm:shrink-0 hover:border-[#C4B5FD] hover:shadow-[0_0_28px_rgba(124,58,237,0.35)]"
             >
-              View Our Work
+              Ready when you are.
             </SweepButton>
           </motion.div>
         </motion.div>

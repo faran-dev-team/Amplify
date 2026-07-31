@@ -25,6 +25,7 @@ const NAV_LINKS = [
 ] as const;
 
 const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const easeEditorial: [number, number, number, number] = [0.2, 0.65, 0.3, 0.9];
 const springSoft = {
   type: "spring" as const,
   stiffness: 260,
@@ -147,7 +148,7 @@ function MagneticCTA({
         aria-hidden
         className="pointer-events-none absolute inset-0 origin-left scale-x-0 bg-[#A855F7] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 group-focus-visible:scale-x-100"
       />
-      <span className="relative z-10">Start Your Growth Strategy</span>
+      <span className="relative z-10">Let&apos;s grow.</span>
     </motion.a>
   );
 }
@@ -155,11 +156,11 @@ function MagneticCTA({
 /** Path-morphing menu icon — lines morph into an X (no CSS rotate tricks). */
 function MenuIcon({ open }: { open: boolean }) {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
       <motion.path
         fill="transparent"
         stroke="currentColor"
-        strokeWidth="1.4"
+        strokeWidth="1.35"
         strokeLinecap="round"
         animate={{
           d: open ? "M 5.5 5.5 L 18.5 18.5" : "M 4 7.5 L 20 7.5",
@@ -169,7 +170,7 @@ function MenuIcon({ open }: { open: boolean }) {
       <motion.path
         fill="transparent"
         stroke="currentColor"
-        strokeWidth="1.4"
+        strokeWidth="1.35"
         strokeLinecap="round"
         animate={{
           d: open ? "M 12 12 L 12 12" : "M 4 12 L 20 12",
@@ -180,7 +181,7 @@ function MenuIcon({ open }: { open: boolean }) {
       <motion.path
         fill="transparent"
         stroke="currentColor"
-        strokeWidth="1.4"
+        strokeWidth="1.35"
         strokeLinecap="round"
         animate={{
           d: open ? "M 5.5 18.5 L 18.5 5.5" : "M 4 16.5 L 20 16.5",
@@ -191,15 +192,231 @@ function MenuIcon({ open }: { open: boolean }) {
   );
 }
 
+/**
+ * Amplification geometry — concentric arcs + faint signal nodes.
+ * Transform/opacity only. No blobs, no continuous layout work.
+ */
+function MobileMenuAtmosphere({ active }: { active: boolean }) {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+    >
+      {/* Deep stage — quiet, no decorative orbs */}
+      <div className="absolute inset-0 bg-[#05040A]" />
+      <div className="absolute inset-0 bg-[radial-gradient(90%_70%_at_50%_-10%,rgba(109,40,217,0.14)_0%,transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(70%_50%_at_100%_100%,rgba(168,85,247,0.06)_0%,transparent_50%)]" />
+
+      {/* Precision hairline grid */}
+      <div
+        className="absolute inset-0 opacity-[0.035]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.7) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.7) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          maskImage:
+            "radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 75%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 75%)",
+        }}
+      />
+
+      {/* Amplification arcs — logo language */}
+      <svg
+        className="absolute -right-[18%] top-[8%] h-[72%] w-[90%] opacity-100"
+        viewBox="0 0 480 640"
+        fill="none"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        {[
+          { r: 90, o: 0.22 },
+          { r: 140, o: 0.16 },
+          { r: 190, o: 0.11 },
+          { r: 245, o: 0.07 },
+          { r: 305, o: 0.045 },
+        ].map((arc, i) => (
+          <motion.path
+            key={arc.r}
+            d={`M ${120 - arc.r * 0.15} ${320 + arc.r * 0.55} A ${arc.r} ${arc.r} 0 0 1 ${120 + arc.r * 0.95} ${320 - arc.r * 0.35}`}
+            stroke="rgba(168,85,247,1)"
+            strokeWidth={1}
+            strokeLinecap="round"
+            initial={{ opacity: 0, pathLength: 0.4 }}
+            animate={
+              active
+                ? { opacity: arc.o, pathLength: 1 }
+                : { opacity: 0, pathLength: 0.4 }
+            }
+            transition={{
+              duration: 1.4,
+              delay: 0.15 + i * 0.08,
+              ease: easeEditorial,
+            }}
+          />
+        ))}
+
+        {/* Soft signal nodes along the rail */}
+        {[
+          [210, 220],
+          [280, 280],
+          [320, 360],
+          [300, 440],
+        ].map(([cx, cy], i) => (
+          <motion.circle
+            key={`${cx}-${cy}`}
+            cx={cx}
+            cy={cy}
+            r={2.2}
+            fill="rgba(232,213,255,0.9)"
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={
+              active
+                ? { opacity: [0.25, 0.55, 0.25], scale: 1 }
+                : { opacity: 0, scale: 0.6 }
+            }
+            transition={{
+              opacity: {
+                duration: 3.6,
+                delay: 0.8 + i * 0.35,
+                repeat: Infinity,
+                ease: "easeInOut",
+              },
+              scale: { duration: 0.6, delay: 0.5 + i * 0.1 },
+            }}
+          />
+        ))}
+      </svg>
+
+      {/* Left vertical signal rail accent */}
+      <div className="absolute bottom-[22%] left-8 top-[22%] w-px overflow-hidden opacity-30">
+        <motion.div
+          className="absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-[#A855F7]/80 to-transparent"
+          animate={
+            active
+              ? { y: ["-100%", "220%"] }
+              : { y: "-100%" }
+          }
+          transition={
+            active
+              ? {
+                  duration: 4.8,
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: 1.2,
+                }
+              : { duration: 0.3 }
+          }
+        />
+      </div>
+    </div>
+  );
+}
+
+function MobileNavItem({
+  label,
+  href,
+  index,
+  active,
+  onSelect,
+  onClose,
+}: {
+  label: string;
+  href: string;
+  index: number;
+  active: boolean;
+  onSelect: () => void;
+  onClose: () => void;
+}) {
+  return (
+    <motion.li
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 8 }}
+      transition={{
+        duration: 0.55,
+        delay: 0.12 + index * 0.055,
+        ease: easeEditorial,
+      }}
+      className="relative"
+    >
+      <a
+        href={href}
+        onClick={onClose}
+        onFocus={onSelect}
+        onMouseEnter={onSelect}
+        className="group relative flex items-center gap-5 py-3.5 pl-1 pr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/50 focus-visible:ring-offset-4 focus-visible:ring-offset-[#05040A]"
+        style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
+        aria-current={active ? "true" : undefined}
+      >
+        {/* Index + node on the signal rail */}
+        <span className="relative z-[1] flex w-10 shrink-0 flex-col items-center">
+          <span
+            className={`mb-1 flex h-2 w-2 rounded-full border transition-[border-color,background-color,box-shadow,transform] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              active
+                ? "scale-110 border-[#C084FC] bg-[#A855F7] shadow-[0_0_12px_rgba(168,85,247,0.55)]"
+                : "border-white/25 bg-transparent group-hover:border-[#A855F7]/70"
+            }`}
+          />
+          <span
+            className={`text-[10px] font-medium tracking-[0.14em] transition-colors duration-400 ${
+              active
+                ? "text-[#C084FC]"
+                : "text-white/25 group-hover:text-white/45"
+            }`}
+          >
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </span>
+
+        <span className="relative min-w-0 flex-1">
+          <span
+            className={`block tracking-[-0.035em] transition-[color,transform,font-size,opacity] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:translate-x-1 ${
+              active
+                ? "text-[34px] font-medium leading-[1.05] text-white"
+                : "text-[28px] font-medium leading-[1.08] text-white/42 group-hover:text-white/88"
+            }`}
+          >
+            {label}
+          </span>
+
+          {/* Signal-wave underline */}
+          <span
+            aria-hidden
+            className={`mt-2 block h-px origin-left bg-gradient-to-r from-[#A855F7] via-[#C084FC]/80 to-transparent transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              active
+                ? "scale-x-100"
+                : "scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100"
+            }`}
+          />
+        </span>
+
+        {/* Soft destination chevron */}
+        <span
+          aria-hidden
+          className={`shrink-0 text-[13px] transition-[opacity,transform,color] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            active
+              ? "translate-x-0 text-[#C084FC] opacity-80"
+              : "translate-x-[-4px] text-white/0 opacity-0 group-hover:translate-x-0 group-hover:text-white/40 group-hover:opacity-100"
+          }`}
+        >
+          →
+        </span>
+      </a>
+    </motion.li>
+  );
+}
+
 export function AmplifyNav() {
   const scrolled = useScrolled(28);
   const floating = scrolled;
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuMounted, setMenuMounted] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const openMenu = useCallback(() => {
     setMenuMounted(true);
     setMenuOpen(true);
+    setActiveIndex(0);
   }, []);
 
   const closeMenu = useCallback(() => {
@@ -235,9 +452,9 @@ export function AmplifyNav() {
       >
         <motion.div
           animate={{
-            paddingTop: floating || menuOpen ? 16 : 0,
-            paddingLeft: floating || menuOpen ? 16 : 0,
-            paddingRight: floating || menuOpen ? 16 : 0,
+            paddingTop: floating || menuOpen ? 12 : 0,
+            paddingLeft: floating || menuOpen ? 14 : 0,
+            paddingRight: floating || menuOpen ? 14 : 0,
           }}
           transition={springSoft}
           className="mx-auto w-full max-w-[1400px]"
@@ -247,28 +464,26 @@ export function AmplifyNav() {
             animate={{
               backgroundColor:
                 menuOpen
-                  ? "rgba(18, 8, 31, 0.96)"
+                  ? "rgba(8, 7, 14, 0.72)"
                   : floating
                     ? "rgba(11, 15, 26, 0.94)"
                     : "rgba(15, 23, 42, 0)",
               borderColor:
                 menuOpen
-                  ? "rgba(168, 85, 247, 0.28)"
+                  ? "rgba(255, 255, 255, 0.08)"
                   : floating
                     ? "rgba(255, 255, 255, 0.08)"
                     : "rgba(255, 255, 255, 0)",
               boxShadow:
                 menuOpen
-                  ? "0 12px 40px rgba(88, 28, 135, 0.35)"
+                  ? "0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.06)"
                   : floating
                     ? "0 12px 40px rgba(0, 0, 0, 0.28)"
                     : "0 0 0 rgba(0, 0, 0, 0)",
-              borderRadius: floating || menuOpen ? 20 : 0,
+              borderRadius: floating || menuOpen ? 18 : 0,
             }}
             transition={springSoft}
-            className={`relative grid h-[120px] grid-cols-[1fr_auto] items-center border px-5 md:grid-cols-[1fr_auto_1fr] md:px-8 lg:px-12 xl:px-16 ${
-              floating || menuOpen ? "" : ""
-            }`}
+            className="relative grid h-[120px] grid-cols-[1fr_auto] items-center border px-5 md:grid-cols-[1fr_auto_1fr] md:px-8 lg:px-12 xl:px-16"
           >
             {/* Logo — left grid cell */}
             <div className="relative z-10 flex items-center justify-self-start">
@@ -304,20 +519,20 @@ export function AmplifyNav() {
               <MagneticCTA />
             </div>
 
-            {/* Mobile toggle */}
+            {/* Mobile toggle — frosted, never dominates */}
             <motion.button
               type="button"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
               aria-controls="amplify-mobile-menu"
               onClick={toggleMenu}
-              className={`relative z-10 flex h-12 w-12 items-center justify-center justify-self-end rounded-full transition-all duration-[280ms] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/70 md:hidden ${
+              className={`relative z-10 flex h-11 w-11 items-center justify-center justify-self-end rounded-full transition-[border-color,background-color,color,box-shadow] duration-[320ms] ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/55 md:hidden ${
                 menuOpen
-                  ? "bg-[#A855F7] text-white shadow-[0_0_28px_rgba(168,85,247,0.55)]"
-                  : "border border-white/15 bg-white/[0.06] text-white hover:border-[#A855F7]/60 hover:bg-[#A855F7]/15 hover:text-[#E9D5FF]"
+                  ? "border border-white/12 bg-white/[0.04] text-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:border-white/20 hover:bg-white/[0.07] hover:text-white"
+                  : "border border-white/15 bg-white/[0.06] text-white hover:border-[#A855F7]/55 hover:bg-[#A855F7]/12 hover:text-[#E9D5FF]"
               }`}
               whileTap={{ scale: 0.96 }}
-              transition={{ duration: 0.25, ease: easeOutExpo }}
+              transition={{ duration: 0.3, ease: easeOutExpo }}
             >
               <MenuIcon open={menuOpen} />
             </motion.button>
@@ -341,12 +556,12 @@ export function AmplifyNav() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.35, ease: easeOutExpo }}
+              transition={{ duration: 0.4, ease: easeEditorial }}
             >
               <motion.button
                 type="button"
                 aria-label="Close menu overlay"
-                className="absolute inset-0 bg-black/70"
+                className="absolute inset-0 bg-[#030208]/50"
                 onClick={closeMenu}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -355,111 +570,130 @@ export function AmplifyNav() {
 
               <motion.div
                 className="absolute inset-0 flex min-h-[100dvh] flex-col overflow-hidden"
-                style={{
-                  background:
-                    "radial-gradient(120% 80% at 10% -10%, rgba(168,85,247,0.45) 0%, transparent 45%), radial-gradient(90% 70% at 100% 20%, rgba(236,72,153,0.28) 0%, transparent 40%), radial-gradient(80% 60% at 50% 100%, rgba(99,102,241,0.35) 0%, transparent 50%), linear-gradient(165deg, #12081F 0%, #0A0614 42%, #160B28 100%)",
-                }}
-                initial={{ y: "-6%", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: "-3%", opacity: 0 }}
+                initial={{ opacity: 0, y: "-4%" }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: "-2%" }}
                 transition={springSoft}
               >
+                <MobileMenuAtmosphere active={menuOpen} />
+
+                {/* Top hairline */}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute -left-16 top-28 h-56 w-56 rounded-full bg-[#A855F7]/20"
-                />
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute -right-10 bottom-40 h-64 w-64 rounded-full bg-[#7C3AED]/15"
-                />
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C084FC]/70 to-transparent"
+                  className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
                 />
 
+                {/* Destinations */}
                 <nav
-                  className="relative z-10 flex flex-1 flex-col justify-center px-6 pt-[140px]"
+                  className="relative z-10 flex flex-1 flex-col justify-center px-7 pt-[128px] sm:px-10"
                   aria-label="Mobile"
                 >
-                  <p
-                    className="mb-8 text-[11px] font-medium uppercase tracking-[0.28em] text-[#C4B5FD]/80"
+                  <motion.p
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.55, delay: 0.06, ease: easeEditorial }}
+                    className="mb-10 text-[10px] font-medium uppercase tracking-[0.32em] text-white/30"
                     style={{
                       fontFamily: "var(--font-space-grotesk), sans-serif",
                     }}
                   >
-                    Navigate
-                  </p>
-                  <ul className="flex flex-col gap-1">
-                    {NAV_LINKS.map((link, i) => (
-                      <motion.li
-                        key={link.href}
-                        initial={{ opacity: 0, x: -18 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -8 }}
-                        transition={{
-                          ...springSoft,
-                          delay: 0.05 + i * 0.07,
-                        }}
-                      >
-                        <a
+                    Destinations
+                  </motion.p>
+
+                  <div className="relative">
+                    {/* Continuous signal path behind indices */}
+                    <div
+                      aria-hidden
+                      className="absolute bottom-4 left-[22px] top-4 w-px bg-gradient-to-b from-white/0 via-white/12 to-white/0"
+                    />
+
+                    <ul className="relative flex flex-col gap-1">
+                      {NAV_LINKS.map((link, i) => (
+                        <MobileNavItem
+                          key={link.href}
+                          label={link.label}
                           href={link.href}
-                          onClick={closeMenu}
-                          className="group flex items-center gap-4 rounded-2xl px-3 py-3.5 transition-colors duration-300 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/70"
-                          style={{
-                            fontFamily: "var(--font-space-grotesk), sans-serif",
-                          }}
-                        >
-                          <span className="w-8 text-[12px] font-medium tracking-[0.08em] text-[#A855F7]">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <span className="bg-gradient-to-r from-white via-white to-[#E9D5FF] bg-clip-text text-[30px] font-medium tracking-[-0.03em] text-transparent transition-all duration-300 group-hover:from-[#F5D0FE] group-hover:via-[#E9D5FF] group-hover:to-[#C4B5FD]">
-                            {link.label}
-                          </span>
-                          <span
-                            aria-hidden
-                            className="ml-auto h-px w-0 bg-gradient-to-r from-[#A855F7] to-[#EC4899] transition-all duration-300 group-hover:w-10"
-                          />
-                        </a>
-                      </motion.li>
-                    ))}
-                  </ul>
+                          index={i}
+                          active={activeIndex === i}
+                          onSelect={() => setActiveIndex(i)}
+                          onClose={closeMenu}
+                        />
+                      ))}
+                    </ul>
+                  </div>
                 </nav>
 
+                {/* CTA + signature close */}
                 <motion.div
-                  className="relative z-10 px-6 pb-10 pt-6"
-                  initial={{ opacity: 0, y: 18 }}
+                  className="relative z-10 px-7 pb-[max(2rem,env(safe-area-inset-bottom))] pt-4 sm:px-10"
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{
-                    ...springSoft,
-                    delay: 0.05 + NAV_LINKS.length * 0.07 + 0.12,
+                    duration: 0.65,
+                    delay: 0.12 + NAV_LINKS.length * 0.055,
+                    ease: easeEditorial,
                   }}
                 >
-                  <div className="mb-5 h-px w-full bg-gradient-to-r from-transparent via-[#A855F7]/40 to-transparent" />
+                  <div className="mb-7 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+                  <p
+                    className="mb-3 text-[12px] tracking-[0.06em] text-white/35"
+                    style={{
+                      fontFamily: "var(--font-space-grotesk), sans-serif",
+                    }}
+                  >
+                    Ready to scale?
+                  </p>
+
                   <a
                     href="#contact"
                     onClick={closeMenu}
-                    className="group relative flex h-[56px] w-full items-center justify-center overflow-hidden rounded-full border border-[#C084FC]/70 bg-gradient-to-r from-[#7C3AED] via-[#A855F7] to-[#DB2777] text-[14px] font-semibold tracking-[0.02em] text-white shadow-[0_12px_40px_rgba(168,85,247,0.45)] transition-transform duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F0ABFC] active:scale-[0.985]"
+                    className="group relative flex h-[52px] w-full items-center justify-between overflow-hidden rounded-full border border-white/12 bg-white/[0.03] px-6 text-[14px] font-medium tracking-[0.02em] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition-[border-color,background-color,transform] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[#A855F7]/45 hover:bg-[#A855F7]/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/55 active:scale-[0.985]"
                     style={{
                       fontFamily: "var(--font-space-grotesk), sans-serif",
                     }}
                   >
+                    <span className="relative z-10">Let&apos;s grow.</span>
                     <span
                       aria-hidden
-                      className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/0 via-white/25 to-white/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    />
-                    <span className="relative z-10">
-                      Start Your Growth Strategy
+                      className="relative z-10 text-[#C084FC] transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1"
+                    >
+                      →
                     </span>
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 origin-left scale-x-0 bg-[#A855F7]/20 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"
+                    />
                   </a>
-                  <p
-                    className="mt-4 text-center text-[12px] tracking-[0.04em] text-[#C4B5FD]/65"
-                    style={{
-                      fontFamily: "var(--font-space-grotesk), sans-serif",
-                    }}
-                  >
-                    AI Native Growth Studio
-                  </p>
+
+                  {/* Closing frame — film end card */}
+                  <div className="mt-10 flex flex-col items-center text-center">
+                    <p
+                      className="text-[15px] font-medium tracking-[-0.02em] text-white/70"
+                      style={{
+                        fontFamily: "var(--font-space-grotesk), sans-serif",
+                      }}
+                    >
+                      Amplify
+                    </p>
+                    <p
+                      className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.28em] text-white/28"
+                      style={{
+                        fontFamily: "var(--font-space-grotesk), sans-serif",
+                      }}
+                    >
+                      AI-Native Growth Studio
+                    </p>
+                    <p
+                      className="mt-3 text-[12px] tracking-[0.02em] text-[#A855F7]/55"
+                      style={{
+                        fontFamily: "var(--font-space-grotesk), sans-serif",
+                      }}
+                    >
+                      Growth, amplified.
+                    </p>
+                  </div>
                 </motion.div>
               </motion.div>
             </motion.div>
