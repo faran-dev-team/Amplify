@@ -142,6 +142,10 @@ function SignalPulse({
     const start = performance.now();
 
     const tick = (now: number) => {
+      if (!active || document.visibilityState !== "visible") {
+        raf = 0;
+        return;
+      }
       const path = pathRef.current;
       if (path) {
         const elapsed = (now - start) % (cycle + pause);
@@ -159,7 +163,7 @@ function SignalPulse({
       }
       raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
+    if (active) raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [active, pathRef, reduced]);
 
@@ -173,7 +177,6 @@ function SignalPulse({
       r={3}
       fill="#E9D5FF"
       opacity={0}
-      style={{ filter: "url(#capSignalBloom)" }}
     />
   );
 }

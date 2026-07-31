@@ -298,9 +298,12 @@ function AtmosphereDrift({ active }: { active: boolean }) {
     window.addEventListener("resize", resize);
 
     const draw = () => {
+      if (!active || document.visibilityState !== "visible") {
+        raf = 0;
+        return;
+      }
       raf = requestAnimationFrame(draw);
       ctx.clearRect(0, 0, w, h);
-      if (!active) return;
       for (const d of dots) {
         d.x += d.vx;
         d.y += d.vy;
@@ -314,11 +317,17 @@ function AtmosphereDrift({ active }: { active: boolean }) {
         ctx.fill();
       }
     };
-    draw();
+    if (active) draw();
+
+    const onVis = () => {
+      if (document.visibilityState === "visible" && active && !raf) draw();
+    };
+    document.addEventListener("visibilitychange", onVis);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onVis);
     };
   }, [active]);
 
@@ -432,7 +441,6 @@ function SignalPulse({
       r={2.8}
       fill="#E9D5FF"
       opacity={0}
-      style={{ filter: "url(#trustSignalBloom)" }}
     />
   );
 }
@@ -784,11 +792,11 @@ function EcosystemCard({
     >
       <motion.article
         className="group relative w-full"
-        initial={{ opacity: 0, y: 32, filter: "blur(8px)" }}
+        initial={{ opacity: 0, y: 32 }}
         animate={
           active
-            ? { opacity: 1, y: 0, filter: "blur(0px)" }
-            : { opacity: 0, y: 24, filter: "blur(6px)" }
+            ? { opacity: 1, y: 0 }
+            : { opacity: 0, y: 24 }
         }
         transition={{
           duration: active ? 0.95 : 0.55,
@@ -799,7 +807,7 @@ function EcosystemCard({
         onMouseLeave={() => onHoverChange(false)}
         onFocus={() => active && onHoverChange(true)}
         onBlur={() => onHoverChange(false)}
-        style={{ willChange: "transform, opacity, filter" }}
+        style={{ willChange: "transform, opacity" }}
         aria-hidden={!active}
       >
         <div

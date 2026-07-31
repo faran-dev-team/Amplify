@@ -38,18 +38,30 @@ const springMagnetic = {
   mass: 0.4,
 };
 
-function subscribeScroll(onStoreChange: () => void) {
-  window.addEventListener("scroll", onStoreChange, { passive: true });
-  return () => window.removeEventListener("scroll", onStoreChange);
+function getScrolled(threshold: number) {
+  if (typeof window === "undefined") return false;
+  return window.scrollY > threshold;
 }
 
-function getScrollY() {
-  return typeof window === "undefined" ? 0 : window.scrollY;
+function subscribeScrolled(threshold: number, onStoreChange: () => void) {
+  let prev = getScrolled(threshold);
+  const onScroll = () => {
+    const next = getScrolled(threshold);
+    if (next !== prev) {
+      prev = next;
+      onStoreChange();
+    }
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  return () => window.removeEventListener("scroll", onScroll);
 }
 
 function useScrolled(threshold = 28) {
-  const scrollY = useSyncExternalStore(subscribeScroll, getScrollY, () => 0);
-  return scrollY > threshold;
+  return useSyncExternalStore(
+    (onStoreChange) => subscribeScrolled(threshold, onStoreChange),
+    () => getScrolled(threshold),
+    () => false
+  );
 }
 
 function NavLink({
@@ -93,8 +105,12 @@ function MagneticCTA({
   const y = useMotionValue(0);
   const springX = useSpring(x, springMagnetic);
   const springY = useSpring(y, springMagnetic);
+  const finePointer =
+    typeof window !== "undefined" &&
+    window.matchMedia("(pointer: fine)").matches;
 
   const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!finePointer) return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -120,7 +136,7 @@ function MagneticCTA({
         y: springY,
         fontFamily: "var(--font-space-grotesk), sans-serif",
       }}
-      whileHover={{ scale: 1.02 }}
+      whileHover={finePointer ? { scale: 1.02 } : undefined}
       whileTap={{ scale: 0.99 }}
       transition={{ duration: 0.25, ease: easeOutExpo }}
       className={`group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full border border-[#A855F7]/80 bg-[#0B0F1A] px-7 text-[13px] font-medium tracking-[0.01em] text-white transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[#F0ABFC] hover:shadow-[0_8px_32px_rgba(168,85,247,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
@@ -231,29 +247,27 @@ export function AmplifyNav() {
             animate={{
               backgroundColor:
                 menuOpen
-                  ? "rgba(18, 8, 31, 0.88)"
+                  ? "rgba(18, 8, 31, 0.96)"
                   : floating
-                    ? "rgba(15, 23, 42, 0.72)"
+                    ? "rgba(11, 15, 26, 0.94)"
                     : "rgba(15, 23, 42, 0)",
               borderColor:
                 menuOpen
                   ? "rgba(168, 85, 247, 0.28)"
                   : floating
-                    ? "rgba(255, 255, 255, 0.05)"
+                    ? "rgba(255, 255, 255, 0.08)"
                     : "rgba(255, 255, 255, 0)",
               boxShadow:
                 menuOpen
                   ? "0 12px 40px rgba(88, 28, 135, 0.35)"
                   : floating
-                    ? "0 12px 40px rgba(0, 0, 0, 0.18)"
+                    ? "0 12px 40px rgba(0, 0, 0, 0.28)"
                     : "0 0 0 rgba(0, 0, 0, 0)",
               borderRadius: floating || menuOpen ? 20 : 0,
             }}
             transition={springSoft}
             className={`relative grid h-[120px] grid-cols-[1fr_auto] items-center border px-5 md:grid-cols-[1fr_auto_1fr] md:px-8 lg:px-12 xl:px-16 ${
-              floating || menuOpen
-                ? "backdrop-blur-[18px]"
-                : "backdrop-blur-none"
+              floating || menuOpen ? "" : ""
             }`}
           >
             {/* Logo — left grid cell */}
@@ -266,11 +280,13 @@ export function AmplifyNav() {
                 transition={{ duration: 0.28, ease: easeOutExpo }}
               >
                 <Image
-                  src="/logo.png"
+                  src="/logo-mark.webp"
                   alt="Amplify"
                   width={144}
                   height={144}
-                  className="h-[144px] w-[144px] object-contain drop-shadow-[0_0_28px_rgba(168,85,247,0.65)]"
+                  sizes="144px"
+                  quality={82}
+                  className="h-[144px] w-[144px] object-contain"
                   priority
                 />
               </motion.a>
@@ -350,11 +366,11 @@ export function AmplifyNav() {
               >
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute -left-16 top-28 h-56 w-56 rounded-full bg-[#A855F7]/25 blur-[90px]"
+                  className="pointer-events-none absolute -left-16 top-28 h-56 w-56 rounded-full bg-[#A855F7]/20"
                 />
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute -right-10 bottom-40 h-64 w-64 rounded-full bg-[#EC4899]/20 blur-[100px]"
+                  className="pointer-events-none absolute -right-10 bottom-40 h-64 w-64 rounded-full bg-[#7C3AED]/15"
                 />
                 <div
                   aria-hidden

@@ -1,27 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Space_Grotesk, Playfair_Display } from "next/font/google";
+import { Geist, Space_Grotesk, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
   weight: ["700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -38,7 +36,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${playfair.variable} h-full antialiased`}
+      className={`dark ${geistSans.variable} ${spaceGrotesk.variable} ${playfair.variable} h-full antialiased`}
       style={{ colorScheme: "dark" }}
     >
       <body className="flex min-h-full flex-col bg-[#030208] text-white">

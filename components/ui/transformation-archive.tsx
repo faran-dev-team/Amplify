@@ -461,7 +461,7 @@ function TransformationReveal({
         fill
         sizes="(max-width: 768px) 100vw, 70vw"
         className="object-cover"
-        priority
+        loading="lazy"
       />
       <div
         aria-hidden
@@ -482,7 +482,7 @@ function TransformationReveal({
             fill
             sizes="(max-width: 768px) 100vw, 70vw"
             className="object-cover [filter:saturate(0.7)_brightness(0.82)]"
-            priority
+            loading="lazy"
           />
           <div
             aria-hidden
