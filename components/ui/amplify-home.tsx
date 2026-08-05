@@ -51,19 +51,36 @@ const ClosingChapter = dynamic(
 /**
  * Experience shell — WebGL atmosphere lives only inside the Hero.
  * Below-fold sections are code-split for smooth scrolling on low-memory devices.
+ * Visual stage: layered midnight / cloud-blue / violet design system.
  */
 export function AmplifyHome() {
   return (
-    <main className="relative min-h-screen bg-[#030208]">
+    <main className="s12-stage relative min-h-screen">
       <div className="relative z-10">
-        <WovenLightHero />
-        <SignalOutcomes />
-        <GrowthCapabilities />
-        <TrustEcosystem />
-        <TransformationArchive />
-        <VoicesBehindGrowth />
-        <ConversationBeforeBegin />
-        <ClosingChapter />
+        <div className="s12-atm-hero relative">
+          <WovenLightHero />
+        </div>
+        <div className="s12-atm-calm relative">
+          <SignalOutcomes />
+        </div>
+        <div className="s12-atm-editorial relative">
+          <GrowthCapabilities />
+        </div>
+        <div className="s12-atm-cool relative">
+          <TrustEcosystem />
+        </div>
+        <div className="s12-atm-editorial relative">
+          <TransformationArchive />
+        </div>
+        <div className="s12-atm-balanced relative">
+          <VoicesBehindGrowth />
+        </div>
+        <div className="s12-atm-cloud relative">
+          <ConversationBeforeBegin />
+        </div>
+        <div className="s12-atm-finale relative">
+          <ClosingChapter />
+        </div>
       </div>
       <AmplifyNav />
     </main>

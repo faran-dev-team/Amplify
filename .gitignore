@@ -32,8 +32,6 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files
-.env
-.env.*
 !.env.example
 
 # vercel
@@ -45,6 +43,6 @@ next-env.d.ts
 
 # editor / local agent notes
 .idea/
-.vscode/
 AGENTS.md
 CLAUDE.md
+config.bat

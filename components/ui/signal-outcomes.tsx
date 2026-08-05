@@ -16,8 +16,8 @@ import {
    Design tokens
 ───────────────────────────────────────────── */
 
-const PURPLE = "#A855F7";
-const PURPLE_SOFT = "#C084FC";
+const PURPLE = "#7C5CFF";
+const PURPLE_SOFT = "#B8A4FF";
 const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const easeEditorial: [number, number, number, number] = [0.2, 0.65, 0.3, 0.9];
 
@@ -75,7 +75,7 @@ const METRICS: Metric[] = [
     description:
       "Enterprise-quality delivery on an ongoing federal engagement.",
     pathProgress: 0.52,
-    terrace: "mt-10 md:mt-28 lg:mt-36",
+    terrace: "mt-8 md:mt-20 lg:mt-24",
     seat: "md:justify-self-center",
   },
   {
@@ -85,9 +85,9 @@ const METRICS: Metric[] = [
     suffix: "K+",
     title: "Verified Upwork Earnings",
     description:
-      "Proof we ship real work — not decks.",
+      "Proof we ship real work, not decks.",
     pathProgress: 0.78,
-    terrace: "mt-10 md:mt-56 lg:mt-72",
+    terrace: "mt-8 md:mt-36 lg:mt-48",
     seat: "md:justify-self-end md:mr-[2%]",
   },
 ];
@@ -376,7 +376,7 @@ function ActivationNode({
         transition={{ duration: 0.55, ease: easeEditorial }}
         style={{
           filter: active
-            ? "drop-shadow(0 0 8px rgba(168,85,247,0.7))"
+            ? "drop-shadow(0 0 8px rgba(124,92,255,0.7))"
             : undefined,
         }}
       />
@@ -449,7 +449,7 @@ function SignalPulse({
       cx={0}
       cy={0}
       r={3.2}
-      fill="#E9D5FF"
+      fill="#D4C8FF"
       opacity={0}
     />
   );
@@ -505,10 +505,8 @@ function MetricCard({
             }
       }
       transition={{
-        duration: active ? 0.95 : 0.65,
-        delay: active
-          ? 0.1 + index * 0.1
-          : (cardCount - 1 - index) * 0.28,
+        duration: active ? 0.7 : 0.65,
+        delay: active ? 0.04 : (cardCount - 1 - index) * 0.28,
         ease: easeEditorial,
       }}
       onMouseEnter={() => active && onHoverChange(true)}
@@ -522,7 +520,7 @@ function MetricCard({
       aria-hidden={!active}
     >
       <div
-        className="relative overflow-hidden rounded-[22px] border border-white/[0.06] bg-[#0A0B12]/78 px-8 py-9 transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[6px] group-hover:border-white/[0.12] group-hover:shadow-[0_28px_56px_rgba(0,0,0,0.5),0_0_48px_rgba(168,85,247,0.14)] focus-within:border-white/[0.12]"
+        className="relative overflow-hidden rounded-[22px] border border-[rgba(168,196,240,0.11)] bg-[linear-gradient(165deg,rgba(16,26,50,0.92),rgba(10,18,36,0.88))] px-6 py-7 shadow-[inset_0_1px_0_rgba(232,240,255,0.06),0_18px_48px_rgba(2,4,10,0.45)] backdrop-blur-[10px] transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[6px] group-hover:border-[rgba(184,164,255,0.28)] group-hover:shadow-[inset_0_1px_0_rgba(232,240,255,0.08),0_22px_56px_rgba(2,4,10,0.5),0_0_48px_rgba(124,92,255,0.1)] focus-within:border-[rgba(184,164,255,0.28)]"
         style={{
           boxShadow:
             "0 18px 44px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.04)",
@@ -532,11 +530,11 @@ function MetricCard({
         {/* Ridge accent — tiny purple tick hinting connection to the path */}
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-px left-8 h-px w-12 bg-gradient-to-r from-[#A855F7]/70 to-transparent opacity-70"
+          className="pointer-events-none absolute -top-px left-8 h-px w-12 bg-gradient-to-r from-[#7C5CFF]/70 to-transparent opacity-70"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-8 -top-10 h-28 w-40 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:bg-[#A855F7]/25 group-hover:opacity-100"
+          className="pointer-events-none absolute -left-8 -top-10 h-28 w-40 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:bg-[#7C5CFF]/25 group-hover:opacity-100"
         />
         <div
           aria-hidden
@@ -549,8 +547,8 @@ function MetricCard({
           initial={{ opacity: 0 }}
           animate={{ opacity: active ? 1 : 0 }}
           transition={{
-            duration: active ? 0.5 : 0.3,
-            delay: active ? 0.18 : 0,
+            duration: active ? 0.4 : 0.3,
+            delay: active ? 0.1 : 0,
           }}
         >
           <motion.span
@@ -569,13 +567,13 @@ function MetricCard({
         </motion.p>
 
         <h3
-          className="relative mt-5 text-[15px] font-medium tracking-[0.04em] text-[#E9D5FF]"
+          className="relative mt-5 text-[15px] font-medium tracking-[0.04em] text-[#D4C8FF]"
           style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
         >
           {metric.title}
         </h3>
         <p
-          className="relative mt-2.5 max-w-[260px] text-[14px] leading-relaxed text-white/45"
+          className="relative mt-2.5 max-w-[260px] text-[14px] leading-relaxed text-[#9AA8C0]"
           style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
         >
           {metric.description}
@@ -737,10 +735,11 @@ function SignalSystem({
 
 export function SignalOutcomes() {
   const sectionRef = useRef<HTMLElement>(null);
+  // Fire as soon as the section enters from the hero — don't wait for ~1/3 visible
   const inView = useInView(sectionRef, {
     once: false,
-    amount: 0.32,
-    margin: "-8% 0px -12% 0px",
+    amount: 0.08,
+    margin: "12% 0px -8% 0px",
   });
   const reduced = useReducedMotion();
   const mobile = useIsMobile();
@@ -795,9 +794,9 @@ export function SignalOutcomes() {
       return;
     }
 
-    METRICS.forEach((m, i) => {
-      // Signal draws ~2.45s; activate as the pulse "arrives"
-      const delay = 380 + m.pathProgress * 2300;
+    // One-by-one reveal — fast enough to feel responsive, slow enough to read sequentially
+    METRICS.forEach((_, i) => {
+      const delay = 120 + i * 340;
       timers.push(
         window.setTimeout(() => {
           setActivated((prev) => {
@@ -817,12 +816,12 @@ export function SignalOutcomes() {
       ref={sectionRef}
       id="outcomes"
       aria-label="Verifiable track record"
-      className="relative z-0 -mt-[18vh] min-h-[110vh] overflow-hidden pb-32 pt-[18vh] md:-mt-[12vh] md:min-h-[130vh] md:pb-48 md:pt-[14vh]"
+      className="relative z-0 -mt-[20vh] min-h-[88vh] overflow-hidden pb-10 pt-[8vh] md:-mt-[14vh] md:min-h-[100vh] md:pb-14 md:pt-[7vh]"
     >
       {/* Continuous midnight veil — no hard section break */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-[#030208]/15 to-[#030208]/25"
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-[#050814]/15 to-[#050814]/25"
       />
 
       <AtmosphereDrift active={journeyActive} />
@@ -831,13 +830,13 @@ export function SignalOutcomes() {
       <div className="relative mx-auto max-w-[1240px] px-5 md:px-8">
         <div
           className={`relative ${
-            mobile ? "min-h-[1080px]" : "min-h-[640px] md:min-h-[780px] lg:min-h-[860px]"
+            mobile ? "min-h-[920px]" : "min-h-[560px] md:min-h-[680px] lg:min-h-[740px]"
           }`}
         >
           {/* Layers 4–5: descending ridge + nodes beneath terraces */}
           <div
             className={`pointer-events-none absolute inset-x-0 z-[4] ${
-              mobile ? "-top-4 bottom-0" : "-top-[18%] bottom-[-6%]"
+              mobile ? "top-8 bottom-0" : "-top-[8%] bottom-[-6%]"
             }`}
           >
             <SignalSystem
@@ -852,8 +851,8 @@ export function SignalOutcomes() {
           <div
             className={`relative z-[6] ${
               mobile
-                ? "mt-20 flex flex-col items-center gap-4 pt-6"
-                : "mt-10 grid grid-cols-3 items-start gap-6 lg:mt-14 lg:gap-10"
+                ? "mt-24 flex flex-col items-center gap-4 pt-4"
+                : "mt-20 grid grid-cols-3 items-start gap-5 lg:mt-24 lg:gap-8"
             }`}
           >
             {METRICS.map((metric, i) => (
@@ -873,7 +872,7 @@ export function SignalOutcomes() {
 
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-36 bg-gradient-to-t from-[#030208]/30 to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-20 bg-gradient-to-t from-[#050814]/30 to-transparent"
       />
     </section>
   );

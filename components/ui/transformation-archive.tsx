@@ -18,8 +18,8 @@ import {
    Design tokens
 ───────────────────────────────────────────── */
 
-const PURPLE = "#A855F7";
-const PURPLE_SOFT = "#C084FC";
+const PURPLE = "#7C5CFF";
+const PURPLE_SOFT = "#B8A4FF";
 const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const easeEditorial: [number, number, number, number] = [0.2, 0.65, 0.3, 0.9];
 
@@ -59,7 +59,7 @@ const TRANSFORMATIONS: Transformation[] = [
     timeline: "Scale tier",
     title: "From Agency Sprawl to One AI-Native Partner",
     subtitle:
-      "A Series A/B SaaS team replaced five vendors with one growth studio — paid, SEO, content, and automation as one system.",
+      "A Series A/B SaaS team replaced five vendors with one growth studio across paid, SEO, content, and automation as one system.",
     beforeLabel: "Five Agencies",
     afterLabel: "One Partner",
     beforeImage: "/transformations/featured-before.jpg",
@@ -76,7 +76,7 @@ const TRANSFORMATIONS: Transformation[] = [
       },
       {
         label: "Strategy",
-        body: "Move to Scale — multi-channel management, weekly strategy, landing pages, brand kit, and marketing automation.",
+        body: "Move to Scale: multi-channel management, weekly strategy, landing pages, brand kit, and marketing automation.",
       },
       {
         label: "Execution",
@@ -84,7 +84,7 @@ const TRANSFORMATIONS: Transformation[] = [
       },
       {
         label: "Transformation",
-        body: "One partner. Every channel. Built on AI — with outcomes Amplify stands behind.",
+        body: "One partner. Every channel. Built on AI, with outcomes Scale 12x stands behind.",
       },
     ],
     metrics: [
@@ -100,7 +100,7 @@ const TRANSFORMATIONS: Transformation[] = [
     timeline: "Dominate tier",
     title: "Modernizing Care Without Adding Another Vendor",
     subtitle:
-      "A telehealth operator needed end-to-end modernization — brand, web, AI workflows, and secure infrastructure.",
+      "A telehealth operator needed end-to-end modernization across brand, web, AI workflows, and secure infrastructure.",
     beforeLabel: "Fragmented Stack",
     afterLabel: "Unified System",
     beforeImage: "/transformations/health-before.jpg",
@@ -117,7 +117,7 @@ const TRANSFORMATIONS: Transformation[] = [
       },
       {
         label: "Strategy",
-        body: "Dominate — full website rebuild, custom AI implementations, cloud & data setup, cybersecurity essentials.",
+        body: "Dominate: full website rebuild, custom AI implementations, cloud & data setup, cybersecurity essentials.",
       },
       {
         label: "Execution",
@@ -141,7 +141,7 @@ const TRANSFORMATIONS: Transformation[] = [
     timeline: "Scale tier",
     title: "Multi-Channel Growth Past $2M",
     subtitle:
-      "A DTC brand ready to accelerate — paid, SEO, content, and LinkedIn under one AI-native operating rhythm.",
+      "A DTC brand ready to accelerate across paid, SEO, content, and LinkedIn under one AI-native operating rhythm.",
     beforeLabel: "Channel Guesswork",
     afterLabel: "Multi-Channel System",
     beforeImage: "/transformations/commerce-before.jpg",
@@ -158,7 +158,7 @@ const TRANSFORMATIONS: Transformation[] = [
       },
       {
         label: "Strategy",
-        body: "Scale retainer — full multi-channel management, weekly reporting, creative production, CRM integration.",
+        body: "Scale retainer: full multi-channel management, weekly reporting, creative production, CRM integration.",
       },
       {
         label: "Execution",
@@ -182,7 +182,7 @@ const TRANSFORMATIONS: Transformation[] = [
     timeline: "Launch tier",
     title: "Serious Growth Investment, Without Enterprise Bloat",
     subtitle:
-      "A home-services operator — via Foreman cross-sell — started with paid and content, then compounded.",
+      "A home-services operator (via Foreman cross-sell) started with paid and content, then compounded.",
     beforeLabel: "Ad Hoc Marketing",
     afterLabel: "Launch System",
     beforeImage: "/capabilities/capability-cloud.png",
@@ -191,7 +191,7 @@ const TRANSFORMATIONS: Transformation[] = [
     beats: [
       {
         label: "Challenge",
-        body: "Marketing lived in scraps — occasional ads, no reporting cadence, no brand system.",
+        body: "Marketing lived in scraps: occasional ads, no reporting cadence, no brand system.",
       },
       {
         label: "Insight",
@@ -199,7 +199,7 @@ const TRANSFORMATIONS: Transformation[] = [
       },
       {
         label: "Strategy",
-        body: "Launch — 1–2 channels, monthly strategy, basic brand kit refresh, dashboards, email support.",
+        body: "Launch: 1–2 channels, monthly strategy, basic brand kit refresh, dashboards, email support.",
       },
       {
         label: "Execution",
@@ -240,7 +240,7 @@ const TRANSFORMATIONS: Transformation[] = [
       },
       {
         label: "Strategy",
-        body: "Brand identity + kit, then website rebuild — one-off projects with a clear path into retainer.",
+        body: "Brand identity + kit, then website rebuild: one-off projects with a clear path into retainer.",
       },
       {
         label: "Execution",
@@ -265,7 +265,7 @@ const TRANSFORMATIONS: Transformation[] = [
 
 function VaultEntrance({ active }: { active: boolean }) {
   return (
-    <div className="pointer-events-none relative mx-auto mb-16 h-40 w-full max-w-lg md:mb-24 md:h-48">
+    <div className="pointer-events-none relative mx-auto mb-4 h-20 w-full max-w-lg md:mb-6 md:h-28">
       <svg
         className="absolute inset-0 h-full w-full"
         viewBox="0 0 480 180"
@@ -434,7 +434,7 @@ function TransformationReveal({
   return (
     <div
       ref={trackRef}
-      className="relative aspect-[16/10] w-full cursor-ew-resize select-none overflow-hidden rounded-[22px] border border-white/[0.08] bg-[#0A0B12] touch-none md:rounded-[28px]"
+      className="relative aspect-[16/10] w-full cursor-ew-resize select-none overflow-hidden rounded-[22px] border border-white/[0.08] bg-[#0A1224] touch-none md:rounded-[28px]"
       style={{
         boxShadow:
           "0 28px 64px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05)",
@@ -465,7 +465,7 @@ function TransformationReveal({
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#030208]/35 via-transparent to-transparent"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050814]/35 via-transparent to-transparent"
       />
 
       <div
@@ -486,7 +486,7 @@ function TransformationReveal({
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[#030208]/25"
+            className="pointer-events-none absolute inset-0 bg-[#050814]/25"
           />
         </div>
       </div>
@@ -495,18 +495,18 @@ function TransformationReveal({
         className="absolute inset-y-0 z-10 w-px bg-white/70"
         style={{
           left: `${pos * 100}%`,
-          boxShadow: "0 0 18px rgba(168,85,247,0.55)",
+          boxShadow: "0 0 18px rgba(124,92,255,0.55)",
         }}
       >
-        <div className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-[#0A0B12]/85 shadow-[0_0_28px_rgba(168,85,247,0.35)] backdrop-blur-sm">
+        <div className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-[#0A1224]/85 shadow-[0_0_28px_rgba(124,92,255,0.35)] backdrop-blur-sm">
           <span className="text-[11px] tracking-widest text-white/80">⟷</span>
         </div>
       </div>
 
-      <div className="pointer-events-none absolute left-4 top-4 rounded-full border border-white/10 bg-[#030208]/55 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.22em] text-white/70 backdrop-blur-sm md:left-5 md:top-5">
+      <div className="pointer-events-none absolute left-4 top-4 rounded-full border border-[rgba(168,196,240,0.14)] bg-[#050814]/55 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.22em] text-white/70 backdrop-blur-sm md:left-5 md:top-5">
         {beforeLabel}
       </div>
-      <div className="pointer-events-none absolute right-4 top-4 rounded-full border border-[#A855F7]/30 bg-[#030208]/55 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.22em] text-[#E9D5FF] backdrop-blur-sm md:right-5 md:top-5">
+      <div className="pointer-events-none absolute right-4 top-4 rounded-full border border-[#7C5CFF]/30 bg-[#050814]/55 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.22em] text-[#D4C8FF] backdrop-blur-sm md:right-5 md:top-5">
         {afterLabel}
       </div>
     </div>
@@ -525,7 +525,7 @@ function StoryBeats({
   active: boolean;
 }) {
   return (
-    <ol className="relative space-y-6 md:space-y-7">
+    <ol className="relative space-y-4 md:space-y-5">
       {beats.map((beat, i) => (
         <motion.li
           key={beat.label}
@@ -539,7 +539,7 @@ function StoryBeats({
           className="flex flex-col gap-2 sm:grid sm:grid-cols-[148px_minmax(0,1fr)] sm:gap-5 md:grid-cols-[168px_minmax(0,1fr)] md:gap-6"
         >
           <p
-            className="shrink-0 text-[11px] font-medium uppercase tracking-[0.18em] text-[#A855F7]/75"
+            className="shrink-0 text-[11px] font-medium uppercase tracking-[0.18em] text-[#7C5CFF]/75"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
             {beat.label}
@@ -564,12 +564,12 @@ function MeasuredImpact({
   active: boolean;
 }) {
   return (
-    <div className="mt-10 border-t border-white/[0.06] pt-8 md:mt-12 md:pt-10">
+    <div className="mt-10 border-t border-[rgba(168,196,240,0.11)] pt-8 md:mt-12 md:pt-10">
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: active ? 1 : 0 }}
         transition={{ duration: 0.5, delay: active ? 0.7 : 0 }}
-        className="mb-6 text-[11px] font-medium uppercase tracking-[0.28em] text-white/30"
+        className="mb-6 text-[11px] font-medium uppercase tracking-[0.28em] text-[#6B7890]"
         style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
       >
         Engagement Profile
@@ -593,7 +593,7 @@ function MeasuredImpact({
               {m.value}
             </p>
             <p
-              className="mt-2 text-[13px] leading-snug text-white/40"
+              className="mt-2 text-[13px] leading-snug text-[#9AA8C0]/95"
               style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
             >
               {m.label}
@@ -637,7 +637,7 @@ function FeaturedTransformation({
             active={active}
           />
           <p
-            className="mt-4 text-center text-[12px] text-white/30"
+            className="mt-4 text-center text-[12px] text-[#6B7890]"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
             Drag to witness the transformation
@@ -649,10 +649,10 @@ function FeaturedTransformation({
             initial={{ opacity: 0, y: 20 }}
             animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
             transition={{ duration: 0.8, delay: 0.1, ease: easeEditorial }}
-            className="mb-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] font-medium uppercase tracking-[0.2em] text-white/35"
+            className="mb-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] font-medium uppercase tracking-[0.2em] text-[#9AA8C0]/85"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            <span className="text-[#A855F7]/80">{item.industry}</span>
+            <span className="text-[#7C5CFF]/80">{item.industry}</span>
             <span className="h-px w-6 bg-white/15" aria-hidden />
             <span>{item.technology}</span>
             <span className="h-px w-6 bg-white/15" aria-hidden />
@@ -673,7 +673,7 @@ function FeaturedTransformation({
             initial={{ opacity: 0, y: 16 }}
             animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
             transition={{ duration: 0.8, delay: 0.24, ease: easeEditorial }}
-            className="mt-4 max-w-md text-[15px] leading-relaxed text-white/45 md:mt-5 md:text-base"
+            className="mt-4 max-w-md text-[15px] leading-relaxed text-[#9AA8C0] md:mt-5 md:text-base"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
             {item.subtitle}
@@ -691,7 +691,7 @@ function FeaturedTransformation({
             initial={{ opacity: 0 }}
             animate={{ opacity: active ? 1 : 0 }}
             transition={{ duration: 0.5, delay: active ? 1.1 : 0 }}
-            className="group/cta mt-9 inline-flex items-center gap-2.5 text-[14px] font-medium tracking-[0.02em] text-[#E9D5FF] transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/60"
+            className="group/cta mt-9 inline-flex items-center gap-2.5 text-[14px] font-medium tracking-[0.02em] text-[#D4C8FF] transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/60"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
             Open full transformation file
@@ -744,9 +744,9 @@ function ArchiveChapter({
       }`}
     >
       <div
-        className={`relative overflow-hidden rounded-[22px] border border-white/[0.07] bg-[#0A0B12] transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[6px] group-hover:border-white/[0.14] group-hover:shadow-[0_28px_56px_rgba(0,0,0,0.5),0_0_40px_rgba(168,85,247,0.14)] ${
+        className={`relative overflow-hidden rounded-[22px] border border-[rgba(168,196,240,0.12)] bg-[#0A1224] transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[6px] group-hover:border-white/[0.14] group-hover:shadow-[0_28px_56px_rgba(0,0,0,0.5),0_0_40px_rgba(124,92,255,0.14)] ${
           flip ? "md:order-2" : "md:order-1"
-        } ${selected ? "border-[#A855F7]/35" : ""}`}
+        } ${selected ? "border-[#7C5CFF]/35" : ""}`}
         style={{
           boxShadow:
             "0 20px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04)",
@@ -763,7 +763,7 @@ function ArchiveChapter({
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#030208]/55 via-transparent to-transparent"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050814]/55 via-transparent to-transparent"
           />
           <div
             aria-hidden
@@ -773,7 +773,7 @@ function ArchiveChapter({
             aria-hidden
             className="pointer-events-none absolute -inset-px rounded-[22px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
             style={{
-              boxShadow: "inset 0 0 0 1px rgba(168,85,247,0.35)",
+              boxShadow: "inset 0 0 0 1px rgba(124,92,255,0.35)",
             }}
           />
         </div>
@@ -781,7 +781,7 @@ function ArchiveChapter({
 
       <div className={`relative ${flip ? "md:order-1" : "md:order-2"}`}>
         <p
-          className="mb-3 text-[11px] font-medium uppercase tracking-[0.26em] text-[#A855F7]/75"
+          className="mb-3 text-[11px] font-medium uppercase tracking-[0.26em] text-[#7C5CFF]/75"
           style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
         >
           Chapter {String(index + 1).padStart(2, "0")} · {item.industry}
@@ -793,21 +793,21 @@ function ArchiveChapter({
           {item.title}
         </h3>
         <p
-          className="mt-3 max-w-sm text-[14px] leading-relaxed text-white/45 md:mt-4 md:text-[15px]"
+          className="mt-3 max-w-sm text-[14px] leading-relaxed text-[#9AA8C0] md:mt-4 md:text-[15px]"
           style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
         >
           {item.subtitle}
         </p>
         <div
-          className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[11px] uppercase tracking-[0.18em] text-white/30"
+          className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[11px] uppercase tracking-[0.18em] text-[#6B7890]"
           style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
         >
           <span>{item.technology}</span>
           <span>{item.timeline}</span>
-          <span className="text-[#E9D5FF]/70">{item.metrics[0]?.value} impact</span>
+          <span className="text-[#D4C8FF]/70">{item.metrics[0]?.value} impact</span>
         </div>
         <span
-          className="mt-6 inline-flex items-center gap-2 text-[13px] font-medium text-[#E9D5FF]/80 transition-colors group-hover:text-white"
+          className="mt-6 inline-flex items-center gap-2 text-[13px] font-medium text-[#D4C8FF]/80 transition-colors group-hover:text-white"
           style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
         >
           Open file
@@ -851,18 +851,18 @@ function ExpandedFile({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 24 }}
       transition={{ duration: reduced ? 0.01 : 0.7, ease: easeEditorial }}
-      className="relative z-[8] overflow-hidden rounded-[28px] border border-white/[0.08] bg-[#0A0B12]/92"
+      className="relative z-[8] overflow-hidden rounded-[28px] border border-white/[0.08] bg-[#0A1224]/92"
       style={{
         boxShadow:
-          "0 32px 80px rgba(0,0,0,0.55), 0 0 60px rgba(168,85,247,0.08), inset 0 1px 0 rgba(255,255,255,0.05)",
+          "0 32px 80px rgba(0,0,0,0.55), 0 0 60px rgba(124,92,255,0.08), inset 0 1px 0 rgba(255,255,255,0.05)",
       }}
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#A855F7]/40 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#7C5CFF]/40 to-transparent" />
 
-      <div className="flex items-center justify-between gap-4 border-b border-white/[0.06] px-5 py-4 md:px-8 md:py-5">
+      <div className="flex items-center justify-between gap-4 border-b border-[rgba(168,196,240,0.11)] px-5 py-4 md:px-8 md:py-5">
         <div>
           <p
-            className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#A855F7]/80"
+            className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#7C5CFF]/80"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
             Transformation File · {item.industry}
@@ -877,14 +877,14 @@ function ExpandedFile({
         <button
           type="button"
           onClick={onClose}
-          className="rounded-full border border-white/10 px-4 py-2 text-[12px] font-medium uppercase tracking-[0.18em] text-white/60 transition-colors hover:border-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/60"
+          className="rounded-full border border-[rgba(168,196,240,0.14)] px-4 py-2 text-[12px] font-medium uppercase tracking-[0.18em] text-white/60 transition-colors hover:border-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/60"
           style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
         >
           Close
         </button>
       </div>
 
-      <div className="grid gap-8 p-5 md:grid-cols-[1.2fr_1fr] md:gap-10 md:p-8 lg:p-10">
+      <div className="grid gap-6 p-4 md:grid-cols-[1.2fr_1fr] md:gap-8 md:p-6 lg:p-8">
         <TransformationReveal
           beforeImage={item.beforeImage}
           afterImage={item.afterImage}
@@ -900,7 +900,7 @@ function ExpandedFile({
             {item.title}
           </h3>
           <p
-            className="mt-4 text-[15px] leading-relaxed text-white/45"
+            className="mt-4 text-[15px] leading-relaxed text-[#9AA8C0]"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
             {item.subtitle}
@@ -921,7 +921,7 @@ function ExpandedFile({
 
 function ExitSignal({ active }: { active: boolean }) {
   return (
-    <div className="pointer-events-none relative mx-auto mt-20 h-28 w-full max-w-md md:mt-28 md:h-32">
+    <div className="pointer-events-none relative mx-auto mt-6 h-16 w-full max-w-md md:mt-8 md:h-20">
       <svg
         className="h-full w-full"
         viewBox="0 0 400 120"
@@ -1024,24 +1024,24 @@ export function TransformationArchive() {
       ref={sectionRef}
       id="work"
       aria-label="How growth actually happens"
-      className="relative z-0 -mt-24 overflow-hidden pb-40 pt-12 md:-mt-32 md:pb-52 md:pt-16"
+      className="relative z-0 -mt-28 overflow-hidden pb-12 pt-2 md:-mt-36 md:pb-14 md:pt-4"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#030208]/15 via-transparent to-[#030208]/30"
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#050814]/15 via-transparent to-[#050814]/30"
       />
 
       <div className="relative mx-auto max-w-[1240px] px-5 md:px-8">
         <VaultEntrance active={(inView || headlineInView) && !reduced} />
 
-        <div ref={headlineRef} className="relative z-[6] mb-16 md:mb-24 lg:mb-28">
+        <div ref={headlineRef} className="relative z-[6] mb-10 md:mb-14 lg:mb-16">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={
               headlineInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }
             }
             transition={{ duration: 0.7, ease: easeEditorial }}
-            className="mb-4 text-[12px] font-medium uppercase tracking-[0.3em] text-[#A855F7]/75"
+            className="mb-4 text-[12px] font-medium uppercase tracking-[0.3em] text-[#7C5CFF]/75"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
             Strategic Moat
@@ -1063,7 +1063,7 @@ export function TransformationArchive() {
               headlineInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }
             }
             transition={{ duration: 0.8, delay: 0.18, ease: easeEditorial }}
-            className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/45 md:mt-6 md:text-base"
+            className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#9AA8C0] md:mt-5 md:text-base"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
             AI-native execution. Founder-led premium. Transparent pricing.
@@ -1078,7 +1078,7 @@ export function TransformationArchive() {
 
         <div
           ref={archiveRef}
-          className="relative z-[6] mt-28 md:mt-36 lg:mt-44"
+          className="relative z-[6] mt-16 md:mt-20 lg:mt-24"
         >
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -1086,10 +1086,10 @@ export function TransformationArchive() {
               archiveInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }
             }
             transition={{ duration: 0.75, ease: easeEditorial }}
-            className="mb-14 md:mb-20"
+            className="mb-10 md:mb-14"
           >
             <p
-              className="mb-3 text-[12px] font-medium uppercase tracking-[0.3em] text-[#A855F7]/70"
+              className="mb-3 text-[12px] font-medium uppercase tracking-[0.3em] text-[#7C5CFF]/70"
               style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
             >
               Engagement Models
@@ -1102,7 +1102,7 @@ export function TransformationArchive() {
             </h3>
           </motion.div>
 
-          <div className="flex flex-col gap-20 md:gap-28 lg:gap-32">
+          <div className="flex flex-col gap-12 md:gap-16 lg:gap-20">
             {archive.map((item, i) => (
               <ArchiveChapter
                 key={item.id}
@@ -1115,7 +1115,7 @@ export function TransformationArchive() {
           </div>
         </div>
 
-        <div id="transformation-file" className="relative z-[8] mt-16 scroll-mt-28 md:mt-24">
+        <div id="transformation-file" className="relative z-[8] mt-12 scroll-mt-28 md:mt-16">
           <AnimatePresence mode="wait">
             {openItem && (
               <ExpandedFile
@@ -1134,7 +1134,7 @@ export function TransformationArchive() {
 
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-44 bg-gradient-to-t from-[#030208]/45 via-[#030208]/15 to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-20 bg-gradient-to-t from-[#050814]/45 via-[#050814]/15 to-transparent"
       />
     </section>
   );

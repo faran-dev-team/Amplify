@@ -12,13 +12,15 @@ import {
   useInView,
   useReducedMotion,
 } from "framer-motion";
+import { BOOKING_PATH } from "@/lib/booking";
+import { useBooking } from "@/components/booking/booking-provider";
 
 /* ─────────────────────────────────────────────
    Design tokens
 ───────────────────────────────────────────── */
 
-const PURPLE = "#A855F7";
-const PURPLE_SOFT = "#C084FC";
+const PURPLE = "#7C5CFF";
+const PURPLE_SOFT = "#B8A4FF";
 const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const easeEditorial: [number, number, number, number] = [0.2, 0.65, 0.3, 0.9];
 
@@ -32,6 +34,7 @@ type Capability = {
   pathProgress: number;
   /** Alternating editorial layout */
   flip: boolean;
+  href?: string;
 };
 
 const CAPABILITIES: Capability[] = [
@@ -39,17 +42,18 @@ const CAPABILITIES: Capability[] = [
     id: "ai",
     title: "Generative AI",
     description:
-      "Custom AI apps, chatbots, and production workflows — AI-native across every practice, not bolted on.",
+      "Custom AI apps, chatbots, and production workflows. AI-native across every practice, not bolted on.",
     cta: "Explore Generative AI",
     image: "/capabilities/capability-ai.png",
     pathProgress: 0.22,
     flip: false,
+    href: "/services/ai-solutions",
   },
   {
     id: "software",
     title: "Digital Transformation",
     description:
-      "End-to-end modernization — strategy, automation, and growth systems that replace agency sprawl.",
+      "End-to-end modernization: strategy, automation, and growth systems that replace agency sprawl.",
     cta: "Explore Transformation",
     image: "/capabilities/capability-software.png",
     pathProgress: 0.38,
@@ -59,7 +63,7 @@ const CAPABILITIES: Capability[] = [
     id: "cloud",
     title: "Cloud & Data",
     description:
-      "Infrastructure, data pipelines, and warehousing — with cybersecurity essentials for growing businesses.",
+      "Infrastructure, data pipelines, and warehousing, with cybersecurity essentials for growing businesses.",
     cta: "Explore Cloud & Data",
     image: "/capabilities/capability-cloud.png",
     pathProgress: 0.54,
@@ -69,21 +73,23 @@ const CAPABILITIES: Capability[] = [
     id: "growth",
     title: "Paid Media",
     description:
-      "Google, Meta, LinkedIn, and GPT-native ads — unified with content, search, analytics, and MarTech.",
+      "Google, Meta, LinkedIn, and GPT-native ads, unified with content, search, analytics, and MarTech.",
     cta: "Explore Paid Media",
     image: "/capabilities/capability-growth.png",
     pathProgress: 0.7,
     flip: true,
+    href: "/services/performance-marketing",
   },
   {
     id: "brand",
     title: "Brand Strategy",
     description:
-      "Positioning, naming, and brand systems — shipped with creative studio work and web development.",
+      "Positioning, naming, and brand systems, shipped with creative studio work and web development.",
     cta: "Explore Brand Strategy",
     image: "/capabilities/capability-brand.png",
     pathProgress: 0.86,
     flip: false,
+    href: "/services/brand-strategy",
   },
 ];
 
@@ -175,7 +181,7 @@ function SignalPulse({
       cx={0}
       cy={0}
       r={3}
-      fill="#E9D5FF"
+      fill="#D4C8FF"
       opacity={0}
     />
   );
@@ -222,7 +228,7 @@ function ActivationNode({
         transition={{ duration: 0.55, ease: easeEditorial }}
         style={{
           filter: active
-            ? "drop-shadow(0 0 10px rgba(168,85,247,0.65))"
+            ? "drop-shadow(0 0 10px rgba(124,92,255,0.65))"
             : undefined,
         }}
       />
@@ -392,6 +398,9 @@ function CapabilityModule({
   const inView = useInView(ref, { once: false, amount: 0.32 });
   const reduced = useReducedMotion();
   const [active, setActive] = useState(false);
+  const { openBooking } = useBooking();
+  const href = capability.href ?? BOOKING_PATH;
+  const opensBooking = !capability.href || capability.href === BOOKING_PATH;
 
   useEffect(() => {
     if (inView) {
@@ -435,7 +444,7 @@ function CapabilityModule({
     <article
       ref={ref}
       id={capability.id}
-      className={`group relative z-[6] grid items-center gap-8 md:gap-12 lg:gap-16 ${
+      className={`group relative z-[6] grid items-center gap-6 md:gap-10 lg:gap-12 ${
         capability.flip
           ? "md:grid-cols-[1fr_1.15fr]"
           : "md:grid-cols-[1.15fr_1fr]"
@@ -445,7 +454,7 @@ function CapabilityModule({
       style={{ pointerEvents: active ? "auto" : "none" }}
     >
       <motion.div
-        className={`relative overflow-hidden rounded-[24px] border border-white/[0.06] bg-[#0A0B12]/8 transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[6px] group-hover:border-white/[0.12] group-hover:shadow-[0_28px_64px_rgba(0,0,0,0.5),0_0_48px_rgba(168,85,247,0.12)] ${
+        className={`relative overflow-hidden rounded-[24px] border border-[rgba(168,196,240,0.11)] bg-[#0A1224]/8 transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[6px] group-hover:border-white/[0.12] group-hover:shadow-[0_28px_64px_rgba(0,0,0,0.5),0_0_48px_rgba(124,92,255,0.12)] ${
           imageFirst ? "md:order-1" : "md:order-2"
         }`}
         initial={{ opacity: 0, y: 40 }}
@@ -488,11 +497,11 @@ function CapabilityModule({
           </motion.div>
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#030208]/50 via-transparent to-transparent"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050814]/50 via-transparent to-transparent"
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:bg-[#A855F7]/28 group-hover:opacity-100"
+            className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:bg-[#7C5CFF]/28 group-hover:opacity-100"
           />
           <div
             aria-hidden
@@ -507,7 +516,7 @@ function CapabilityModule({
         }`}
       >
         <motion.p
-          className="mb-4 text-[12px] font-medium uppercase tracking-[0.28em] text-[#A855F7]/80"
+          className="mb-4 text-[12px] font-medium uppercase tracking-[0.28em] text-[#7C5CFF]/80"
           style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: active ? 1 : 0 }}
@@ -548,8 +557,8 @@ function CapabilityModule({
         </motion.p>
 
         <motion.a
-          href="#contact"
-          className="group/cta mt-7 inline-flex items-center gap-2.5 text-[14px] font-medium tracking-[0.02em] text-[#E9D5FF] transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/60"
+          href={href}
+          className="group/cta mt-7 inline-flex items-center gap-2.5 text-[14px] font-medium tracking-[0.02em] text-[#D4C8FF] transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/60"
           style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           initial={{ opacity: 0, y: 10 }}
           animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
@@ -559,6 +568,11 @@ function CapabilityModule({
             ease: easeEditorial,
           }}
           tabIndex={active ? 0 : -1}
+          onClick={(e) => {
+            if (!opensBooking) return;
+            e.preventDefault();
+            openBooking(`growth-capabilities-${capability.id}`);
+          }}
         >
           {capability.cta}
           <span
@@ -661,17 +675,17 @@ export function GrowthCapabilities() {
       ref={sectionRef}
       id="services"
       aria-label="Thirteen practices. One partner."
-      className="relative z-0 -mt-24 overflow-hidden pb-36 pt-8 md:-mt-32 md:pb-48 md:pt-12"
+      className="relative z-0 -mt-28 overflow-hidden pb-12 pt-2 md:-mt-36 md:pb-14 md:pt-4"
     >
       {/* Continuous midnight — no section break */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#030208]/10 via-transparent to-[#030208]/20"
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#050814]/10 via-transparent to-[#050814]/20"
       />
 
       <div className="relative mx-auto max-w-[1200px] px-5 md:px-8">
         {/* Editorial headline */}
-        <div ref={headlineRef} className="relative z-[6] mb-20 md:mb-28 lg:mb-36">
+        <div ref={headlineRef} className="relative z-[6] mb-12 md:mb-16 lg:mb-20">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={
@@ -680,7 +694,7 @@ export function GrowthCapabilities() {
                 : { opacity: 0, y: 12 }
             }
             transition={{ duration: 0.7, ease: easeEditorial }}
-            className="mb-4 text-[12px] font-medium uppercase tracking-[0.3em] text-[#A855F7]/75"
+            className="mb-4 text-[12px] font-medium uppercase tracking-[0.3em] text-[#7C5CFF]/75"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
             Thirteen Practices
@@ -706,15 +720,35 @@ export function GrowthCapabilities() {
                 : { opacity: 0, y: 14 }
             }
             transition={{ duration: 0.8, delay: 0.18, ease: easeEditorial }}
-            className="mt-5 max-w-lg text-[15px] leading-relaxed text-white/45 md:mt-6 md:text-base"
+            className="mt-4 max-w-lg text-[15px] leading-relaxed text-[#9AA8C0] md:mt-5 md:text-base"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            We sell sharp positioning. We deliver broad capability — AI-native across every practice.
+            We sell sharp positioning. We deliver broad capability: AI-native across every practice.
           </motion.p>
+          <motion.a
+            href="/services"
+            initial={{ opacity: 0, y: 12 }}
+            animate={
+              headlineInView
+                ? { opacity: 1, y: 0 }
+                : { opacity: 0, y: 10 }
+            }
+            transition={{ duration: 0.7, delay: 0.28, ease: easeEditorial }}
+            className="group mt-5 inline-flex items-center gap-2 text-[13px] tracking-[0.04em] text-[#B8A4FF] transition-colors hover:text-[#F4F7FC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/55"
+            style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
+          >
+            Explore the Growth Operating System
+            <span
+              aria-hidden
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </motion.a>
         </div>
 
         {/* Signal + modules */}
-        <div className="relative min-h-[2800px] md:min-h-[3000px]">
+        <div className="relative min-h-[2400px] md:min-h-[2600px]">
           <div className="pointer-events-none absolute inset-0 z-[4]">
             <CapabilitiesSignal
               journeyActive={journeyActive && !reduced}
@@ -725,7 +759,7 @@ export function GrowthCapabilities() {
             />
           </div>
 
-          <div className="relative z-[6] flex flex-col gap-24 md:gap-32 lg:gap-40">
+          <div className="relative z-[6] flex flex-col gap-14 md:gap-20 lg:gap-24">
             {CAPABILITIES.map((cap, i) => (
               <CapabilityModule
                 key={cap.id}
@@ -743,7 +777,7 @@ export function GrowthCapabilities() {
 
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-40 bg-gradient-to-t from-[#030208]/35 to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-20 bg-gradient-to-t from-[#050814]/35 to-transparent"
       />
     </section>
   );
