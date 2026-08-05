@@ -12,13 +12,14 @@ import {
   useInView,
   useReducedMotion,
 } from "framer-motion";
+import { BookCTA } from "@/components/booking/book-cta";
 
 /* ─────────────────────────────────────────────
    Design tokens
 ───────────────────────────────────────────── */
 
-const PURPLE = "#A855F7";
-const PURPLE_SOFT = "#C084FC";
+const PURPLE = "#7C5CFF";
+const PURPLE_SOFT = "#B8A4FF";
 const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const easeEditorial: [number, number, number, number] = [0.2, 0.65, 0.3, 0.9];
 
@@ -43,42 +44,10 @@ type Exchange = {
 
 const EXCHANGES: Exchange[] = [
   {
-    id: "hesitation",
+    id: "different",
     opening: true,
     category: "Strategy",
-    question:
-      "What usually prevents ambitious companies from taking the next step?",
-    answer: [
-      "Agency sprawl. Five vendors. Diluted quality. No one owns the whole system.",
-      "US businesses with $5K–$25K/month marketing budgets don't need another specialist. They need one AI-native growth studio.",
-      "That hesitation is healthy. It means the decision matters.",
-    ],
-  },
-  {
-    id: "team",
-    category: "Partnership",
-    question:
-      "We already have an internal team. How would Amplify complement our existing workflow?",
-    answer: [
-      "We don't replace the people who know your business. We amplify them.",
-      "Your team brings institutional knowledge. We bring AI-native execution across thirteen practices — with senior specialists on every account.",
-      "Founder-led premium when the engagement demands it. Measm and Zainab are personally involved. Not a call center. Not offshored.",
-    ],
-  },
-  {
-    id: "stack",
-    category: "Technology",
-    question: "Can you work with our current technology stack?",
-    answer: [
-      "Almost always. MarTech, CRM integrations, cloud & data, and automation are built to strengthen what you already run.",
-      "Rip-and-replace theater is expensive. We integrate, then introduce generative AI and workflows where they compound.",
-      "If something needs to change, we'll say so plainly — and explain why.",
-    ],
-  },
-  {
-    id: "different",
-    category: "Strategy",
-    question: "What makes Amplify different from a traditional agency?",
+    question: "What makes Scale 12x different from a traditional agency?",
     answer: [
       "We're AI-native. Not AI-adopted. Not AI-augmented. Native. Built in.",
       "One partner. Every channel. Unlike shops that specialize in one channel or dilute quality as generic full-service.",
@@ -86,21 +55,11 @@ const EXCHANGES: Exchange[] = [
     ],
   },
   {
-    id: "efficiency",
-    category: "Growth",
-    question: "How do AI systems actually improve operational efficiency?",
-    answer: [
-      "Generative AI for custom apps, chatbots, and production workflows. Strategy & automation for growth systems that remove friction.",
-      "Your marketing, ten times faster — without adding dashboards nobody checks.",
-      "Efficiency is reclaiming attention for judgment only humans can do.",
-    ],
-  },
-  {
     id: "after-launch",
     category: "Process",
     question: "What does collaboration look like after launch?",
     answer: [
-      "Launch is a milestone, not a farewell — and Launch is also our $5K/month entry retainer.",
+      "Launch is a milestone, not a farewell, and Launch is also our $5K/month entry retainer.",
       "Every tier includes reporting. Scale and Dominate add weekly strategy. Dominate adds weekly founder calls and Slack for daily ops.",
       "90-day money-back guarantee on setup fees with KPI triggers. 30-day cancellation notice after the first 90 days. No lock-in beyond that.",
     ],
@@ -108,11 +67,11 @@ const EXCHANGES: Exchange[] = [
   {
     id: "involvement",
     category: "Partnership",
-    question: "How involved will our team need to be?",
+    question: "How involved will our team need to be — and what does pricing look like?",
     answer: [
       "Present for the decisions that matter. Protected from the noise that doesn't.",
       "Discovery call (30 min) → custom proposal (48 hours) → founder demo (45 min) → signed contract → kickoff (48 hours).",
-      "Typical close: 14–21 days. Typical first-year contract: $60K–$240K.",
+      "Typical close: 14–21 days. Typical first-year contract: $60K–$240K across Launch, Scale, and Dominate.",
     ],
   },
   {
@@ -120,7 +79,7 @@ const EXCHANGES: Exchange[] = [
     category: "Timeline",
     question: "How quickly can we expect measurable results?",
     answer: [
-      "We set expectations against your reality — Launch, Scale, or Dominate — not a generic timeline slide.",
+      "We set expectations against your reality (Launch, Scale, or Dominate), not a generic timeline slide.",
       "Setup fees split 50% signing, 50% delivery milestone. Outcomes we stand behind with our own money.",
       "If we can't see a path to meaningful measurement, we shouldn't begin.",
     ],
@@ -129,10 +88,10 @@ const EXCHANGES: Exchange[] = [
     id: "ready",
     closer: true,
     category: "Partnership",
-    question: "What happens when we're ready?",
+    question: "What happens when we're ready to start?",
     answer: [
       "We begin with a conversation.",
-      "No pitch theater. A careful look at where you are, where you intend to go, and whether Amplify is the right partner.",
+      "No pitch theater. A careful look at where you are, where you intend to go, and whether Scale 12x is the right partner.",
       "The next move is yours.",
     ],
   },
@@ -146,7 +105,7 @@ function ListeningArrival({ active }: { active: boolean }) {
   const uid = useId().replace(/:/g, "");
 
   return (
-    <div className="pointer-events-none relative mx-auto mb-10 h-40 w-full max-w-sm md:mb-14 md:h-44">
+    <div className="pointer-events-none relative mx-auto mb-4 h-24 w-full max-w-sm md:mb-5 md:h-28">
       <svg
         className="h-full w-full"
         viewBox="0 0 320 160"
@@ -229,7 +188,7 @@ function ListeningArrival({ active }: { active: boolean }) {
           cx={160}
           cy={96}
           r={5}
-          fill="#E9D5FF"
+          fill="#D4C8FF"
           initial={{ opacity: 0 }}
           animate={
             active
@@ -263,7 +222,7 @@ function ConversationExit({ active }: { active: boolean }) {
   const uid = useId().replace(/:/g, "");
 
   return (
-    <div className="pointer-events-none relative mx-auto mt-10 h-28 w-full max-w-xs md:mt-12 md:h-32">
+    <div className="pointer-events-none relative mx-auto mt-6 h-20 w-full max-w-xs md:mt-8 md:h-24">
       <svg
         className="h-full w-full"
         viewBox="0 0 240 120"
@@ -298,7 +257,7 @@ function ConversationExit({ active }: { active: boolean }) {
           cx={120}
           cy={12}
           r={3.2}
-          fill="#E9D5FF"
+          fill="#D4C8FF"
           initial={{ opacity: 0 }}
           animate={{ opacity: active ? 0.85 : 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
@@ -327,13 +286,13 @@ function UnfoldingAnswer({
         initial={reduced ? false : { opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease: easeEditorial }}
-        className="mb-4 text-[10px] font-medium uppercase tracking-[0.28em] text-[#A855F7]/55"
+        className="mb-4 text-[10px] font-medium uppercase tracking-[0.28em] text-[#7C5CFF]/55"
         style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
       >
         {category}
       </motion.p>
 
-      <div className="space-y-4 md:space-y-5">
+      <div className="space-y-3 md:space-y-4">
         {lines.map((line, i) => (
           <motion.p
             key={`${i}-${line.slice(0, 24)}`}
@@ -388,7 +347,7 @@ function ConversationTurn({
         opacity: { duration: 0.7, delay: reduced ? 0 : Math.min(index, 4) * 0.05, ease: easeEditorial },
         y: { duration: 0.7, delay: reduced ? 0 : Math.min(index, 4) * 0.05, ease: easeEditorial },
       }}
-      className="relative mb-5 pl-10 md:mb-6 md:pl-12"
+      className="relative mb-4 pl-10 md:mb-5 md:pl-12"
     >
       {/* Timeline node + path */}
       <div className="absolute left-0 top-0 bottom-0 w-5">
@@ -419,7 +378,7 @@ function ConversationTurn({
             aria-hidden
             className={`absolute left-1/2 top-[1.85rem] bottom-[-1.35rem] w-px -translate-x-1/2 md:top-[2.05rem] ${
               explored || open
-                ? "bg-gradient-to-b from-[#A855F7]/45 via-white/12 to-white/[0.04]"
+                ? "bg-gradient-to-b from-[#7C5CFF]/45 via-white/12 to-white/[0.04]"
                 : "bg-gradient-to-b from-white/18 via-white/10 to-white/[0.04]"
             }`}
           />
@@ -430,8 +389,8 @@ function ConversationTurn({
         layout
         className={`group relative overflow-hidden rounded-[22px] border transition-[border-color,box-shadow,background-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           open
-            ? "border-[#A855F7]/25 bg-[#0A0B12]/90 shadow-[0_0_48px_rgba(168,85,247,0.12)]"
-            : "border-white/[0.06] bg-[#0A0B12]/55 hover:border-white/[0.11] hover:bg-[#0A0B12]/75 hover:shadow-[0_12px_40px_rgba(0,0,0,0.25)]"
+            ? "border-[#7C5CFF]/25 bg-[linear-gradient(165deg,rgba(16,26,50,0.94),rgba(10,18,36,0.9))] shadow-[inset_0_1px_0_rgba(232,240,255,0.06),0_0_48px_rgba(124,92,255,0.14)]"
+            : "border-[rgba(168,196,240,0.11)] bg-[linear-gradient(165deg,rgba(12,21,43,0.72),rgba(10,18,36,0.62))] hover:border-[rgba(184,164,255,0.22)] hover:bg-[linear-gradient(165deg,rgba(16,26,50,0.9),rgba(10,18,36,0.86))] hover:shadow-[inset_0_1px_0_rgba(232,240,255,0.05),0_12px_40px_rgba(2,4,10,0.35)]"
         }`}
       >
         {/* Soft purple edge on hover / open */}
@@ -439,8 +398,8 @@ function ConversationTurn({
           aria-hidden
           className={`pointer-events-none absolute inset-y-3 left-0 w-px rounded-full transition-opacity duration-500 ${
             open
-              ? "bg-[#A855F7]/70 opacity-100"
-              : "bg-[#A855F7]/40 opacity-0 group-hover:opacity-70"
+              ? "bg-[#7C5CFF]/70 opacity-100"
+              : "bg-[#7C5CFF]/40 opacity-0 group-hover:opacity-70"
           }`}
         />
 
@@ -450,7 +409,7 @@ function ConversationTurn({
           aria-expanded={open}
           aria-controls={panelId}
           onClick={onSelect}
-          className="relative w-full px-5 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/50 focus-visible:ring-offset-0 md:px-7 md:py-6"
+          className="relative w-full px-5 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/50 focus-visible:ring-offset-0 md:px-6 md:py-5"
         >
           <div className="flex items-start justify-between gap-4 md:gap-6">
             <h3
@@ -467,8 +426,8 @@ function ConversationTurn({
               transition={{ duration: 0.4, ease: easeOutExpo }}
               className={`mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-[15px] transition-colors duration-400 ${
                 open
-                  ? "border-[#A855F7]/35 text-[#E9D5FF]"
-                  : "border-white/10 text-white/35 group-hover:border-white/20 group-hover:text-white/55"
+                  ? "border-[#7C5CFF]/35 text-[#D4C8FF]"
+                  : "border-[rgba(168,196,240,0.14)] text-[#9AA8C0]/85 group-hover:border-white/20 group-hover:text-white/55"
               }`}
             >
               +
@@ -496,7 +455,7 @@ function ConversationTurn({
               transition={{ duration: 0.55, ease: easeOutExpo }}
               className="overflow-hidden"
             >
-              <div className="border-t border-white/[0.05] px-5 pb-6 pt-1 md:px-7 md:pb-8">
+              <div className="border-t border-[rgba(168,196,240,0.09)] px-5 pb-5 pt-1 md:px-6 md:pb-6">
                 <UnfoldingAnswer
                   lines={exchange.answer}
                   category={exchange.category}
@@ -548,33 +507,33 @@ export function ConversationBeforeBegin() {
       ref={sectionRef}
       id="conversation"
       aria-label="A conversation before we begin"
-      className="relative z-0 -mt-28 overflow-hidden pb-36 pt-6 md:-mt-36 md:pb-48 md:pt-10"
+      className="relative z-0 -mt-28 overflow-hidden pb-12 pt-2 md:-mt-36 md:pb-14 md:pt-4"
     >
       {/* Calmest atmosphere on the page */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#030208]/30 via-[#030208]/55 to-[#030208]/70"
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#050814]/30 via-[#050814]/55 to-[#050814]/70"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[12%] z-[1] h-[380px] w-[380px] -translate-x-1/2 rounded-full bg-[#A855F7]/[0.035] blur-[110px]"
+        className="pointer-events-none absolute left-1/2 top-[12%] z-[1] h-[380px] w-[380px] -translate-x-1/2 rounded-full bg-[#7C5CFF]/[0.035] blur-[110px]"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-32 bg-gradient-to-b from-[#030208]/40 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-16 bg-gradient-to-b from-[#050814]/40 to-transparent"
       />
 
       <div className="relative mx-auto max-w-[920px] px-5 md:px-8">
         <ListeningArrival active={(inView || headlineInView) && !reduced} />
 
-        <div ref={headlineRef} className="relative z-[6] mb-14 text-center md:mb-20">
+        <div ref={headlineRef} className="relative z-[6] mb-10 text-center md:mb-14">
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={
               headlineInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
             }
             transition={{ duration: 0.75, ease: easeEditorial }}
-            className="mb-4 text-[12px] font-medium uppercase tracking-[0.32em] text-[#A855F7]/70"
+            className="mb-4 text-[12px] font-medium uppercase tracking-[0.32em] text-[#7C5CFF]/70"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
             Launch · Scale · Dominate
@@ -598,10 +557,10 @@ export function ConversationBeforeBegin() {
               headlineInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }
             }
             transition={{ duration: 0.85, delay: 0.18, ease: easeEditorial }}
-            className="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-white/38 md:mt-6 md:text-base"
+            className="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-[#9AA8C0]/90 md:mt-6 md:text-base"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Pricing, process, and partnership — answered straight.
+            Pricing, process, and partnership, answered straight.
           </motion.p>
         </div>
 
@@ -614,7 +573,7 @@ export function ConversationBeforeBegin() {
           {/* Soft canvas frame */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -inset-x-3 -inset-y-4 rounded-[28px] border border-white/[0.03] bg-white/[0.015] md:-inset-x-6 md:-inset-y-6"
+            className="pointer-events-none absolute -inset-x-3 -inset-y-4 rounded-[28px] border border-[rgba(168,196,240,0.07)] bg-white/[0.015] md:-inset-x-6 md:-inset-y-6"
           />
 
           {EXCHANGES.map((exchange, i) => (
@@ -634,7 +593,7 @@ export function ConversationBeforeBegin() {
         {/* Human invitation */}
         <div
           ref={inviteRef}
-          className="relative z-[6] mt-20 text-center md:mt-28"
+          className="relative z-[6] mt-14 text-center md:mt-16"
         >
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -644,26 +603,26 @@ export function ConversationBeforeBegin() {
             transition={{ duration: 0.9, ease: easeEditorial }}
           >
             <p
-              className="text-[13px] tracking-[0.04em] text-white/30"
+              className="text-[13px] tracking-[0.04em] text-[#6B7890]"
               style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
             >
               The next move is yours.
             </p>
-            <a
-              href="#contact"
-              className="mt-3 inline-flex items-center gap-2 text-[22px] font-medium tracking-[-0.025em] text-[#E9D5FF] transition-colors duration-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/50 md:text-[26px]"
+            <BookCTA
+              source="home-conversation-lets-scale"
+              className="mt-3 inline-flex items-center gap-2 text-[22px] font-medium tracking-[-0.025em] text-[#D4C8FF] transition-colors duration-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/50 md:text-[26px]"
               style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             >
-              Let&apos;s grow.
+              Let&apos;s Scale.
               <motion.span
                 aria-hidden
-                className="inline-block text-[18px] text-[#A855F7]/80"
+                className="inline-block text-[18px] text-[#7C5CFF]/80"
                 whileHover={{ x: 4 }}
                 transition={{ duration: 0.35, ease: easeOutExpo }}
               >
                 →
               </motion.span>
-            </a>
+            </BookCTA>
           </motion.div>
 
           <ConversationExit
@@ -674,7 +633,7 @@ export function ConversationBeforeBegin() {
 
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-40 bg-gradient-to-t from-[#030208]/65 via-[#030208]/25 to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-20 bg-gradient-to-t from-[#050814]/65 via-[#050814]/25 to-transparent"
       />
     </section>
   );

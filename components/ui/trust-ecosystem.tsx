@@ -16,8 +16,8 @@ import {
    Design tokens
 ───────────────────────────────────────────── */
 
-const PURPLE = "#A855F7";
-const PURPLE_SOFT = "#C084FC";
+const PURPLE = "#7C5CFF";
+const PURPLE_SOFT = "#B8A4FF";
 const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const easeEditorial: [number, number, number, number] = [0.2, 0.65, 0.3, 0.9];
 
@@ -49,7 +49,7 @@ const HUB_M = { x: 180, y: 200 };
 const NODES: EcosystemNode[] = [
   {
     id: "hub",
-    label: "Amplify",
+    label: "Scale 12x",
     kind: "hub",
     pathProgress: 0.12,
     dx: 600,
@@ -439,7 +439,7 @@ function SignalPulse({
       cx={0}
       cy={0}
       r={2.8}
-      fill="#E9D5FF"
+      fill="#D4C8FF"
       opacity={0}
     />
   );
@@ -489,7 +489,7 @@ function ActivationNode({
         transition={{ duration: 0.55, ease: easeEditorial }}
         style={{
           filter: active
-            ? "drop-shadow(0 0 10px rgba(168,85,247,0.65))"
+            ? "drop-shadow(0 0 10px rgba(124,92,255,0.65))"
             : undefined,
         }}
       />
@@ -556,7 +556,7 @@ function BranchPulse({
       cx={0}
       cy={0}
       r={2}
-      fill="#E9D5FF"
+      fill="#D4C8FF"
       opacity={0}
     />
   );
@@ -811,7 +811,7 @@ function EcosystemCard({
         aria-hidden={!active}
       >
         <div
-          className={`relative overflow-hidden border border-white/[0.07] bg-[#0A0B12] transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[6px] group-hover:border-white/[0.16] group-hover:shadow-[0_28px_56px_rgba(0,0,0,0.55),0_0_48px_rgba(168,85,247,0.18)] ${
+          className={`relative overflow-hidden border border-[rgba(168,196,240,0.12)] bg-[#0A1224] transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[6px] group-hover:border-white/[0.16] group-hover:shadow-[0_28px_56px_rgba(0,0,0,0.55),0_0_48px_rgba(124,92,255,0.18)] ${
             isHub ? "rounded-[22px]" : "rounded-[18px]"
           }`}
           style={{
@@ -843,11 +843,11 @@ function EcosystemCard({
 
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#030208] via-[#030208]/35 to-[#030208]/10"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050814] via-[#050814]/35 to-[#050814]/10"
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#A855F7]/12 via-transparent to-transparent opacity-60 mix-blend-soft-light transition-opacity duration-500 group-hover:opacity-90"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#7C5CFF]/12 via-transparent to-transparent opacity-60 mix-blend-soft-light transition-opacity duration-500 group-hover:opacity-90"
             />
             <div
               aria-hidden
@@ -856,13 +856,14 @@ function EcosystemCard({
 
             {isHub && (
               <div className="absolute inset-x-0 top-[18%] flex justify-center">
-                <div className="relative h-12 w-12 overflow-hidden rounded-2xl border border-white/15 bg-[#0A0B12]/55 shadow-[0_0_32px_rgba(168,85,247,0.35)] backdrop-blur-sm md:h-14 md:w-14">
+                <div className="relative flex h-11 w-[4.75rem] items-center justify-center overflow-hidden rounded-2xl border border-[rgba(168,196,240,0.18)] bg-[#0A1224]/55 shadow-[0_0_32px_rgba(124,92,255,0.35)] backdrop-blur-sm md:h-12 md:w-[5.25rem]">
                   <Image
-                    src="/logo.png"
+                    src="/brand/scale-12x-mark.webp"
                     alt=""
-                    fill
-                    sizes="56px"
-                    className="object-contain p-2"
+                    width={482}
+                    height={320}
+                    sizes="84px"
+                    className="h-8 w-auto object-contain opacity-95 md:h-9"
                   />
                 </div>
               </div>
@@ -870,7 +871,7 @@ function EcosystemCard({
 
             <div className="absolute inset-x-0 bottom-0 z-[2] px-3.5 pb-3.5 pt-10 md:px-4 md:pb-4">
               <p
-                className="text-[9px] font-medium uppercase tracking-[0.26em] text-[#C4B5FD]/80"
+                className="text-[9px] font-medium uppercase tracking-[0.26em] text-[#B8A4FF]/80"
                 style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
               >
                 {isHub ? "Intelligence" : isPlatform ? "Platform" : "Industry"}
@@ -901,12 +902,12 @@ function EcosystemCard({
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute -left-6 -top-8 h-28 w-36 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:bg-[#A855F7]/28 group-hover:opacity-100"
+            className="pointer-events-none absolute -left-6 -top-8 h-28 w-36 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:bg-[#7C5CFF]/28 group-hover:opacity-100"
           />
 
           <motion.div
             aria-hidden
-            className="pointer-events-none absolute bottom-3 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-[#E9D5FF]"
+            className="pointer-events-none absolute bottom-3 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-[#D4C8FF]"
             initial={{ opacity: 0, scale: 0.4 }}
             animate={
               active
@@ -1022,25 +1023,25 @@ export function TrustEcosystem() {
       ref={sectionRef}
       id="network"
       aria-label="Who we serve"
-      className="relative z-0 -mt-24 overflow-hidden pb-40 pt-10 md:-mt-32 md:pb-52 md:pt-14"
+      className="relative z-0 -mt-28 overflow-hidden pb-12 pt-2 md:-mt-36 md:pb-14 md:pt-4"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#030208]/10 via-transparent to-[#030208]/25"
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#050814]/10 via-transparent to-[#050814]/25"
       />
 
       <AtmosphereDrift active={journeyActive} />
       <NeuralMesh active={journeyActive} />
 
       <div className="relative mx-auto max-w-[1200px] px-5 md:px-8">
-        <div ref={headlineRef} className="relative z-[6] mb-16 md:mb-24 lg:mb-28">
+        <div ref={headlineRef} className="relative z-[6] mb-10 md:mb-14 lg:mb-16">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={
               headlineInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }
             }
             transition={{ duration: 0.7, ease: easeEditorial }}
-            className="mb-4 text-[12px] font-medium uppercase tracking-[0.3em] text-[#A855F7]/75"
+            className="mb-4 text-[12px] font-medium uppercase tracking-[0.3em] text-[#7C5CFF]/75"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
             Who We Serve
@@ -1054,7 +1055,7 @@ export function TrustEcosystem() {
             className="max-w-3xl text-[2.75rem] font-medium leading-[1.05] tracking-[-0.035em] text-white md:text-6xl lg:text-7xl"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            Built for ambitious US businesses.
+            Built for businesses ready to scale.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 18 }}
@@ -1062,21 +1063,22 @@ export function TrustEcosystem() {
               headlineInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }
             }
             transition={{ duration: 0.8, delay: 0.18, ease: easeEditorial }}
-            className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/45 md:mt-6 md:text-base"
+            className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#9AA8C0] md:mt-5 md:text-base"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            US-based B2B companies with $2M–$50M revenue and $5K–$25K/month
-            marketing budgets — tired of juggling five agencies to grow.
+            Ambitious B2B companies seeking one AI-native growth partner —
+            enterprise trust, founder-led execution, and exponential scale
+            across every channel.
           </motion.p>
         </div>
 
         {/* Group labels — editorial, not grid headers */}
-        <div className="relative z-[5] mb-8 flex flex-wrap items-center gap-x-8 gap-y-3 md:mb-10">
+        <div className="relative z-[5] mb-6 flex flex-wrap items-center gap-x-8 gap-y-3 md:mb-8">
           <motion.p
             initial={{ opacity: 0 }}
             animate={headlineInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.28 }}
-            className="text-[11px] font-medium uppercase tracking-[0.24em] text-white/30"
+            className="text-[11px] font-medium uppercase tracking-[0.24em] text-[#6B7890]"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
             Acquisition Channels
@@ -1089,7 +1091,7 @@ export function TrustEcosystem() {
             initial={{ opacity: 0 }}
             animate={headlineInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.36 }}
-            className="text-[11px] font-medium uppercase tracking-[0.24em] text-white/30"
+            className="text-[11px] font-medium uppercase tracking-[0.24em] text-[#6B7890]"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
             Primary ICP
@@ -1131,7 +1133,7 @@ export function TrustEcosystem() {
       {/* Convergence veil — signal unifies toward next chapter */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-48 bg-gradient-to-t from-[#030208]/45 via-[#030208]/15 to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-24 bg-gradient-to-t from-[#050814]/45 via-[#050814]/15 to-transparent"
       />
     </section>
   );

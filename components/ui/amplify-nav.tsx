@@ -14,14 +14,14 @@ import {
   useMotionValue,
   useSpring,
 } from "framer-motion";
+import { useBooking } from "@/components/booking/booking-provider";
+import { BOOKING_PATH } from "@/lib/booking";
 
 const NAV_LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "Practices", href: "#practices" },
-  { label: "About", href: "#about" },
-  { label: "Insights", href: "#insights" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Work", href: "/#work" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -69,16 +69,26 @@ function NavLink({
   label,
   href,
   onClick,
+  book,
 }: {
   label: string;
   href: string;
   onClick?: () => void;
+  book?: boolean;
 }) {
+  const booking = useBooking();
+
   return (
     <a
       href={href}
-      onClick={onClick}
-      className="group relative inline-flex items-center py-2 text-[15px] font-medium tracking-[0.02em] text-white/90 transition-colors duration-[280ms] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/55 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+      onClick={(e) => {
+        if (book) {
+          e.preventDefault();
+          booking.openBooking(`nav-${label.toLowerCase()}`);
+        }
+        onClick?.();
+      }}
+      className="group relative inline-flex items-center py-2 text-[15px] font-medium tracking-[0.02em] text-white/90 transition-colors duration-[280ms] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/55 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
       style={{
         fontFamily: "var(--font-space-grotesk), sans-serif",
         transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
@@ -87,7 +97,7 @@ function NavLink({
       {label}
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 -bottom-[1px] mx-auto h-[2px] w-0 origin-center rounded-full bg-[#A855F7] transition-[width] duration-[280ms] group-hover:w-full group-focus-visible:w-full"
+        className="pointer-events-none absolute inset-x-0 -bottom-[1px] mx-auto h-[2px] w-0 origin-center rounded-full bg-[#7C5CFF] transition-[width] duration-[280ms] group-hover:w-full group-focus-visible:w-full"
         style={{ transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
       />
     </a>
@@ -97,15 +107,18 @@ function NavLink({
 function MagneticCTA({
   className = "",
   fullWidth = false,
+  onNavigate,
 }: {
   className?: string;
   fullWidth?: boolean;
+  onNavigate?: () => void;
 }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, springMagnetic);
   const springY = useSpring(y, springMagnetic);
+  const { openBooking } = useBooking();
   const finePointer =
     typeof window !== "undefined" &&
     window.matchMedia("(pointer: fine)").matches;
@@ -129,7 +142,12 @@ function MagneticCTA({
   return (
     <motion.a
       ref={ref}
-      href="#contact"
+      href={BOOKING_PATH}
+      onClick={(e) => {
+        e.preventDefault();
+        onNavigate?.();
+        openBooking("nav-lets-scale");
+      }}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       style={{
@@ -140,15 +158,11 @@ function MagneticCTA({
       whileHover={finePointer ? { scale: 1.02 } : undefined}
       whileTap={{ scale: 0.99 }}
       transition={{ duration: 0.25, ease: easeOutExpo }}
-      className={`group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full border border-[#A855F7]/80 bg-[#0B0F1A] px-7 text-[13px] font-medium tracking-[0.01em] text-white transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[#F0ABFC] hover:shadow-[0_8px_32px_rgba(168,85,247,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
+      className={`group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full s12-btn-primary px-7 text-[13px] font-medium tracking-[0.01em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
         fullWidth ? "w-full" : "whitespace-nowrap"
       } ${className}`}
     >
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-0 origin-left scale-x-0 bg-[#A855F7] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 group-focus-visible:scale-x-100"
-      />
-      <span className="relative z-10">Let&apos;s grow.</span>
+      <span className="relative z-10">Let&apos;s Scale</span>
     </motion.a>
   );
 }
@@ -203,9 +217,9 @@ function MobileMenuAtmosphere({ active }: { active: boolean }) {
       className="pointer-events-none absolute inset-0 overflow-hidden"
     >
       {/* Deep stage — quiet, no decorative orbs */}
-      <div className="absolute inset-0 bg-[#05040A]" />
+      <div className="absolute inset-0 bg-[#050814]" />
       <div className="absolute inset-0 bg-[radial-gradient(90%_70%_at_50%_-10%,rgba(109,40,217,0.14)_0%,transparent_55%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(70%_50%_at_100%_100%,rgba(168,85,247,0.06)_0%,transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(70%_50%_at_100%_100%,rgba(124,92,255,0.06)_0%,transparent_50%)]" />
 
       {/* Precision hairline grid */}
       <div
@@ -238,7 +252,7 @@ function MobileMenuAtmosphere({ active }: { active: boolean }) {
           <motion.path
             key={arc.r}
             d={`M ${120 - arc.r * 0.15} ${320 + arc.r * 0.55} A ${arc.r} ${arc.r} 0 0 1 ${120 + arc.r * 0.95} ${320 - arc.r * 0.35}`}
-            stroke="rgba(168,85,247,1)"
+            stroke="rgba(124,92,255,1)"
             strokeWidth={1}
             strokeLinecap="round"
             initial={{ opacity: 0, pathLength: 0.4 }}
@@ -290,7 +304,7 @@ function MobileMenuAtmosphere({ active }: { active: boolean }) {
       {/* Left vertical signal rail accent */}
       <div className="absolute bottom-[22%] left-8 top-[22%] w-px overflow-hidden opacity-30">
         <motion.div
-          className="absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-[#A855F7]/80 to-transparent"
+          className="absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-[#7C5CFF]/80 to-transparent"
           animate={
             active
               ? { y: ["-100%", "220%"] }
@@ -319,6 +333,7 @@ function MobileNavItem({
   active,
   onSelect,
   onClose,
+  book,
 }: {
   label: string;
   href: string;
@@ -326,7 +341,10 @@ function MobileNavItem({
   active: boolean;
   onSelect: () => void;
   onClose: () => void;
+  book?: boolean;
 }) {
+  const { openBooking } = useBooking();
+
   return (
     <motion.li
       initial={{ opacity: 0, y: 16 }}
@@ -341,10 +359,16 @@ function MobileNavItem({
     >
       <a
         href={href}
-        onClick={onClose}
+        onClick={(e) => {
+          if (book) {
+            e.preventDefault();
+            openBooking(`nav-mobile-${label.toLowerCase()}`);
+          }
+          onClose();
+        }}
         onFocus={onSelect}
         onMouseEnter={onSelect}
-        className="group relative flex items-center gap-5 py-3.5 pl-1 pr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/50 focus-visible:ring-offset-4 focus-visible:ring-offset-[#05040A]"
+        className="group relative flex items-center gap-5 py-3.5 pl-1 pr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/50 focus-visible:ring-offset-4 focus-visible:ring-offset-[#050814]"
         style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
         aria-current={active ? "true" : undefined}
       >
@@ -353,15 +377,15 @@ function MobileNavItem({
           <span
             className={`mb-1 flex h-2 w-2 rounded-full border transition-[border-color,background-color,box-shadow,transform] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               active
-                ? "scale-110 border-[#C084FC] bg-[#A855F7] shadow-[0_0_12px_rgba(168,85,247,0.55)]"
-                : "border-white/25 bg-transparent group-hover:border-[#A855F7]/70"
+                ? "scale-110 border-[#B8A4FF] bg-[#7C5CFF] shadow-[0_0_12px_rgba(124,92,255,0.55)]"
+                : "border-white/25 bg-transparent group-hover:border-[#7C5CFF]/70"
             }`}
           />
           <span
             className={`text-[10px] font-medium tracking-[0.14em] transition-colors duration-400 ${
               active
-                ? "text-[#C084FC]"
-                : "text-white/25 group-hover:text-white/45"
+                ? "text-[#B8A4FF]"
+                : "text-[#6B7890]/90 group-hover:text-[#9AA8C0]"
             }`}
           >
             {String(index + 1).padStart(2, "0")}
@@ -382,7 +406,7 @@ function MobileNavItem({
           {/* Signal-wave underline */}
           <span
             aria-hidden
-            className={`mt-2 block h-px origin-left bg-gradient-to-r from-[#A855F7] via-[#C084FC]/80 to-transparent transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`mt-2 block h-px origin-left bg-gradient-to-r from-[#7C5CFF] via-[#B8A4FF]/80 to-transparent transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               active
                 ? "scale-x-100"
                 : "scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100"
@@ -395,8 +419,8 @@ function MobileNavItem({
           aria-hidden
           className={`shrink-0 text-[13px] transition-[opacity,transform,color] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             active
-              ? "translate-x-0 text-[#C084FC] opacity-80"
-              : "translate-x-[-4px] text-white/0 opacity-0 group-hover:translate-x-0 group-hover:text-white/40 group-hover:opacity-100"
+              ? "translate-x-0 text-[#B8A4FF] opacity-80"
+              : "translate-x-[-4px] text-white/0 opacity-0 group-hover:translate-x-0 group-hover:text-[#9AA8C0]/95 group-hover:opacity-100"
           }`}
         >
           →
@@ -412,6 +436,7 @@ export function AmplifyNav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuMounted, setMenuMounted] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const { openBooking } = useBooking();
 
   const openMenu = useCallback(() => {
     setMenuMounted(true);
@@ -427,6 +452,11 @@ export function AmplifyNav() {
     if (menuOpen) closeMenu();
     else openMenu();
   }, [menuOpen, openMenu, closeMenu]);
+
+  const openMobileBooking = useCallback(() => {
+    closeMenu();
+    window.setTimeout(() => openBooking("nav-mobile-start-scaling"), 280);
+  }, [closeMenu, openBooking]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -489,19 +519,19 @@ export function AmplifyNav() {
             <div className="relative z-10 flex items-center justify-self-start">
               <motion.a
                 href="/"
-                aria-label="Amplify home"
-                className="flex items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/55 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                aria-label="Scale 12x home"
+                className="flex items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/55 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                 whileHover={{ y: -1, opacity: 0.88 }}
                 transition={{ duration: 0.28, ease: easeOutExpo }}
               >
                 <Image
-                  src="/logo-mark.webp"
-                  alt="Amplify"
-                  width={144}
-                  height={144}
-                  sizes="144px"
-                  quality={82}
-                  className="h-[144px] w-[144px] object-contain"
+                  src="/brand/scale-12x-mark.webp"
+                  alt="Scale 12x"
+                  width={482}
+                  height={320}
+                  sizes="(max-width: 768px) 140px, 180px"
+                  quality={100}
+                  className="h-[56px] w-auto max-w-[180px] object-contain object-left sm:h-[64px] sm:max-w-[200px] md:h-[72px] md:max-w-[220px]"
                   priority
                 />
               </motion.a>
@@ -510,7 +540,12 @@ export function AmplifyNav() {
             {/* Links — true center on desktop */}
             <div className="relative z-10 hidden items-center justify-center gap-8 md:flex lg:gap-10">
               {NAV_LINKS.map((link) => (
-                <NavLink key={link.href} label={link.label} href={link.href} />
+                <NavLink
+                  key={link.href}
+                  label={link.label}
+                  href={link.href}
+                  book={"book" in link && Boolean(link.book)}
+                />
               ))}
             </div>
 
@@ -526,10 +561,10 @@ export function AmplifyNav() {
               aria-expanded={menuOpen}
               aria-controls="amplify-mobile-menu"
               onClick={toggleMenu}
-              className={`relative z-10 flex h-11 w-11 items-center justify-center justify-self-end rounded-full transition-[border-color,background-color,color,box-shadow] duration-[320ms] ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/55 md:hidden ${
+              className={`relative z-10 flex h-11 w-11 items-center justify-center justify-self-end rounded-full transition-[border-color,background-color,color,box-shadow] duration-[320ms] ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/55 md:hidden ${
                 menuOpen
-                  ? "border border-white/12 bg-white/[0.04] text-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:border-white/20 hover:bg-white/[0.07] hover:text-white"
-                  : "border border-white/15 bg-white/[0.06] text-white hover:border-[#A855F7]/55 hover:bg-[#A855F7]/12 hover:text-[#E9D5FF]"
+                  ? "border border-[rgba(168,196,240,0.16)] bg-white/[0.04] text-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:border-white/20 hover:bg-white/[0.07] hover:text-white"
+                  : "border border-[rgba(168,196,240,0.18)] bg-white/[0.06] text-white hover:border-[#7C5CFF]/55 hover:bg-[#7C5CFF]/12 hover:text-[#D4C8FF]"
               }`}
               whileTap={{ scale: 0.96 }}
               transition={{ duration: 0.3, ease: easeOutExpo }}
@@ -561,7 +596,7 @@ export function AmplifyNav() {
               <motion.button
                 type="button"
                 aria-label="Close menu overlay"
-                className="absolute inset-0 bg-[#030208]/50"
+                className="absolute inset-0 bg-[#050814]/50"
                 onClick={closeMenu}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -592,7 +627,7 @@ export function AmplifyNav() {
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, delay: 0.06, ease: easeEditorial }}
-                    className="mb-10 text-[10px] font-medium uppercase tracking-[0.32em] text-white/30"
+                    className="mb-10 text-[10px] font-medium uppercase tracking-[0.32em] text-[#6B7890]"
                     style={{
                       fontFamily: "var(--font-space-grotesk), sans-serif",
                     }}
@@ -617,6 +652,7 @@ export function AmplifyNav() {
                           active={activeIndex === i}
                           onSelect={() => setActiveIndex(i)}
                           onClose={closeMenu}
+                          book={"book" in link && Boolean(link.book)}
                         />
                       ))}
                     </ul>
@@ -638,47 +674,47 @@ export function AmplifyNav() {
                   <div className="mb-7 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
                   <p
-                    className="mb-3 text-[12px] tracking-[0.06em] text-white/35"
+                    className="mb-3 text-[12px] tracking-[0.06em] text-[#9AA8C0]/85"
                     style={{
                       fontFamily: "var(--font-space-grotesk), sans-serif",
                     }}
                   >
-                    Ready to scale?
+                    Ready to Scale?
                   </p>
 
                   <a
-                    href="#contact"
-                    onClick={closeMenu}
-                    className="group relative flex h-[52px] w-full items-center justify-between overflow-hidden rounded-full border border-white/12 bg-white/[0.03] px-6 text-[14px] font-medium tracking-[0.02em] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition-[border-color,background-color,transform] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[#A855F7]/45 hover:bg-[#A855F7]/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/55 active:scale-[0.985]"
+                    href={BOOKING_PATH}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      openMobileBooking();
+                    }}
+                    className="group relative flex h-[52px] w-full items-center justify-between overflow-hidden rounded-full s12-btn-primary px-6 text-[14px] font-medium tracking-[0.02em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/55 active:scale-[0.985]"
                     style={{
                       fontFamily: "var(--font-space-grotesk), sans-serif",
                     }}
                   >
-                    <span className="relative z-10">Let&apos;s grow.</span>
+                    <span className="relative z-10">Start Scaling</span>
                     <span
                       aria-hidden
-                      className="relative z-10 text-[#C084FC] transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1"
+                      className="relative z-10 text-[#D4C8FF] transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1"
                     >
                       →
                     </span>
-                    <span
-                      aria-hidden
-                      className="pointer-events-none absolute inset-0 origin-left scale-x-0 bg-[#A855F7]/20 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"
-                    />
                   </a>
 
                   {/* Closing frame — film end card */}
                   <div className="mt-10 flex flex-col items-center text-center">
+                    <Image
+                      src="/brand/scale-12x-mark.webp"
+                      alt="Scale 12x"
+                      width={482}
+                      height={320}
+                      sizes="140px"
+                      quality={100}
+                      className="mb-4 h-16 w-auto object-contain opacity-95"
+                    />
                     <p
-                      className="text-[15px] font-medium tracking-[-0.02em] text-white/70"
-                      style={{
-                        fontFamily: "var(--font-space-grotesk), sans-serif",
-                      }}
-                    >
-                      Amplify
-                    </p>
-                    <p
-                      className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.28em] text-white/28"
+                      className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#6B7890]"
                       style={{
                         fontFamily: "var(--font-space-grotesk), sans-serif",
                       }}
@@ -686,12 +722,12 @@ export function AmplifyNav() {
                       AI-Native Growth Studio
                     </p>
                     <p
-                      className="mt-3 text-[12px] tracking-[0.02em] text-[#A855F7]/55"
+                      className="mt-3 text-[12px] tracking-[0.02em] text-[#7C5CFF]/55"
                       style={{
                         fontFamily: "var(--font-space-grotesk), sans-serif",
                       }}
                     >
-                      Growth, amplified.
+                      Scale Faster. Scale Smarter.
                     </p>
                   </div>
                 </motion.div>

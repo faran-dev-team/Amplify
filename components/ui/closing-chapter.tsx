@@ -13,12 +13,14 @@ import {
   useReducedMotion,
   useSpring,
 } from "framer-motion";
+import { useBooking } from "@/components/booking/booking-provider";
+import { BOOKING_PATH } from "@/lib/booking";
 
 /* ─────────────────────────────────────────────
    Design tokens
 ───────────────────────────────────────────── */
 
-const PURPLE = "#A855F7";
+const PURPLE = "#7C5CFF";
 const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const easeEditorial: [number, number, number, number] = [0.2, 0.65, 0.3, 0.9];
 
@@ -29,12 +31,26 @@ const springMagnetic = {
   mass: 0.45,
 };
 
-const DESTINATIONS = [
-  { label: "About", href: "#about" },
-  { label: "Capabilities", href: "#services" },
-  { label: "Transformation Archive", href: "#work" },
-  { label: "Insights", href: "#insights" },
-  { label: "Contact", href: "#contact" },
+/**
+ * Vertical rhythm scale (optical, not just mathematical)
+ * s  = 16–20px   within a block
+ * m  = 28–32px   related blocks
+ * l  = 40–48px   section breaks
+ * xl = 56–64px   major chapter beats (CTA → meta, social → logo)
+ */
+const FOOTER_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Work", href: "/#work" },
+  { label: "Contact", href: "/contact" },
+] as const;
+
+const LOCATIONS = [
+  "London",
+  "New York",
+  "Dubai",
+  "San Francisco",
+  "Riyadh",
 ] as const;
 
 const SOCIALS = [
@@ -63,7 +79,7 @@ function SignalCompletion({ active }: { active: boolean }) {
   const uid = useId().replace(/:/g, "");
 
   return (
-    <div className="pointer-events-none relative mx-auto mb-10 h-44 w-full max-w-md md:mb-14 md:h-52">
+    <div className="pointer-events-none relative mx-auto mb-2 h-[72px] w-full max-w-sm md:mb-3 md:h-20">
       <svg
         className="h-full w-full"
         viewBox="0 0 360 200"
@@ -85,7 +101,6 @@ function SignalCompletion({ active }: { active: boolean }) {
           </radialGradient>
         </defs>
 
-        {/* Descent from conversation */}
         <motion.path
           d="M 180 0 C 180 28, 180 48, 180 68"
           fill="none"
@@ -102,7 +117,6 @@ function SignalCompletion({ active }: { active: boolean }) {
           transition={{ duration: 1.2, ease: easeEditorial }}
         />
 
-        {/* Circle completion — the journey becomes whole */}
         <motion.circle
           cx={180}
           cy={118}
@@ -140,7 +154,7 @@ function SignalCompletion({ active }: { active: boolean }) {
           cx={180}
           cy={118}
           r={3.5}
-          fill="#E9D5FF"
+          fill="#D4C8FF"
           initial={{ opacity: 0 }}
           animate={
             active
@@ -171,7 +185,7 @@ function CtaSignal({ active, hovering }: { active: boolean; hovering: boolean })
   const uid = useId().replace(/:/g, "");
 
   return (
-    <div className="pointer-events-none relative mx-auto mb-[-6px] h-16 w-full max-w-[220px] md:h-20">
+    <div className="pointer-events-none relative mx-auto -mb-1 h-12 w-full max-w-[200px] md:h-14">
       <svg
         className="h-full w-full"
         viewBox="0 0 220 80"
@@ -189,7 +203,7 @@ function CtaSignal({ active, hovering }: { active: boolean; hovering: boolean })
           <linearGradient id={`ctaInGrad-${uid}`} x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor={PURPLE} stopOpacity="0" />
             <stop offset="50%" stopColor={PURPLE} stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#E9D5FF" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#D4C8FF" stopOpacity="0.9" />
           </linearGradient>
         </defs>
 
@@ -203,13 +217,12 @@ function CtaSignal({ active, hovering }: { active: boolean; hovering: boolean })
           initial={{ pathLength: 0, opacity: 0 }}
           animate={
             active
-              ? { pathLength: 1, opacity: hovering ? 0.75 : 0.4 }
+              ? { pathLength: 1, opacity: hovering ? 0.8 : 0.45 }
               : { pathLength: 0, opacity: 0 }
           }
           transition={{ duration: 1.3, delay: 0.2, ease: easeEditorial }}
         />
 
-        {/* Traveling point on hover */}
         <motion.circle
           cx={110}
           r={3}
@@ -229,7 +242,7 @@ function CtaSignal({ active, hovering }: { active: boolean; hovering: boolean })
 }
 
 /* ─────────────────────────────────────────────
-   Hero CTA — magnetic destination
+   Hero CTA — magnetic destination / grand finale
 ───────────────────────────────────────────── */
 
 function ClosingCTA({
@@ -245,6 +258,7 @@ function ClosingCTA({
   const springX = useSpring(x, springMagnetic);
   const springY = useSpring(y, springMagnetic);
   const reduced = useReducedMotion();
+  const { openBooking } = useBooking();
 
   const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (reduced) return;
@@ -262,59 +276,81 @@ function ClosingCTA({
   };
 
   return (
-    <motion.a
-      ref={ref}
-      href="mailto:hello@amplifyitmedia.com"
-      onMouseMove={handleMove}
-      onMouseEnter={() => onHoverChange(true)}
-      onMouseLeave={handleLeave}
-      style={{
-        x: springX,
-        y: springY,
-        fontFamily: "var(--font-space-grotesk), sans-serif",
-      }}
-      initial={{ opacity: 0, y: 22 }}
-      animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-      transition={{ duration: 0.95, delay: 0.35, ease: easeEditorial }}
-      whileHover={reduced ? undefined : { scale: 1.015 }}
-      whileTap={{ scale: 0.99 }}
-      className="group relative mx-auto flex h-[58px] w-full max-w-[320px] items-center justify-center overflow-hidden rounded-full border border-[#A855F7]/45 bg-[#0A0B12]/90 px-10 text-[14px] font-medium tracking-[0.02em] text-white shadow-[0_0_40px_rgba(168,85,247,0.12)] transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[#C084FC]/70 hover:shadow-[0_0_56px_rgba(168,85,247,0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/55 md:h-[64px] md:max-w-[360px] md:text-[15px]"
-    >
-      {/* Soft breathing glow */}
-      <motion.span
+    <div className="relative mx-auto flex w-full max-w-[360px] justify-center">
+      <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-full bg-[#A855F7]/10"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[130%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7C5CFF]/[0.07] blur-[40px]"
         animate={
           reduced
-            ? { opacity: 0.35 }
-            : { opacity: [0.2, 0.4, 0.2] }
+            ? { opacity: 0.5 }
+            : { opacity: [0.35, 0.58, 0.35] }
         }
         transition={
           reduced
             ? { duration: 0.3 }
-            : { duration: 4.5, ease: "easeInOut", repeat: Infinity }
+            : { duration: 5, ease: "easeInOut", repeat: Infinity }
         }
       />
 
-      {/* Hover fill */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-0 origin-left scale-x-0 bg-[#A855F7] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 group-focus-visible:scale-x-100"
-      />
+      <motion.a
+        ref={ref}
+        href={BOOKING_PATH}
+        onClick={(e) => {
+          e.preventDefault();
+          openBooking("footer-start-scaling");
+        }}
+        onMouseMove={handleMove}
+        onMouseEnter={() => onHoverChange(true)}
+        onMouseLeave={handleLeave}
+        style={{
+          x: springX,
+          y: springY,
+          fontFamily: "var(--font-space-grotesk), sans-serif",
+        }}
+        initial={{ opacity: 0, y: 22 }}
+        animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+        transition={{ duration: 0.95, delay: 0.35, ease: easeEditorial }}
+        whileHover={reduced ? undefined : { scale: 1.02 }}
+        whileTap={{ scale: 0.985 }}
+        className="group relative flex h-[58px] w-full max-w-[320px] items-center justify-center overflow-hidden rounded-full s12-btn-primary px-12 text-[14px] font-medium tracking-[0.04em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/55 md:h-[64px] md:max-w-[360px] md:text-[15px]"
+      >
+        <motion.span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 rounded-full bg-[#7C5CFF]/12"
+          animate={
+            reduced
+              ? { opacity: 0.4 }
+              : { opacity: [0.22, 0.48, 0.22] }
+          }
+          transition={
+            reduced
+              ? { duration: 0.3 }
+              : { duration: 4.5, ease: "easeInOut", repeat: Infinity }
+          }
+        />
 
-      {/* Signal sweep across CTA on hover */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[280%] group-hover:opacity-100"
-      />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/28 to-transparent opacity-0 transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[280%] group-hover:opacity-100"
+        />
 
-      <span className="relative z-10">Ready when you are.</span>
-    </motion.a>
+        {/* Label optically centered; arrow sits outside the visual weight */}
+        <span className="relative z-10">
+          Start Scaling
+          <span
+            aria-hidden
+            className="absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 text-[13px] opacity-65 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1"
+          >
+            →
+          </span>
+        </span>
+      </motion.a>
+    </div>
   );
 }
 
 /* ─────────────────────────────────────────────
-   Destinations — secondary, quiet
+   Grouped destinations — equal visual weight
 ───────────────────────────────────────────── */
 
 function DestinationLink({
@@ -331,23 +367,42 @@ function DestinationLink({
   return (
     <motion.a
       href={href}
-      initial={{ opacity: 0, y: 10 }}
-      animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-      transition={{ duration: 0.65, delay, ease: easeEditorial }}
-      className="group relative inline-flex py-1.5 text-[13px] font-medium tracking-[0.04em] text-white/40 transition-colors duration-400 hover:text-white/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/45"
+      initial={{ opacity: 0, y: 8 }}
+      animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
+      transition={{ duration: 0.6, delay, ease: easeEditorial }}
+      className="group relative inline-flex py-1 text-[13px] font-medium tracking-[0.02em] text-[#9AA8C0]/90 transition-colors duration-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/45"
       style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
     >
       {label}
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 -bottom-px mx-auto h-px w-0 bg-[#A855F7]/80 transition-[width] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-full group-focus-visible:w-full"
+        className="pointer-events-none absolute inset-x-0 -bottom-px mx-auto h-px w-0 bg-[#7C5CFF]/80 transition-[width] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-full group-focus-visible:w-full"
       />
     </motion.a>
   );
 }
 
+function FooterNav({ active }: { active: boolean }) {
+  return (
+    <nav
+      aria-label="Footer"
+      className="mx-auto flex w-full max-w-[480px] flex-wrap items-center justify-center gap-x-8 gap-y-2"
+    >
+      {FOOTER_LINKS.map((link, i) => (
+        <DestinationLink
+          key={link.href}
+          label={link.label}
+          href={link.href}
+          delay={0.08 + i * 0.05}
+          active={active}
+        />
+      ))}
+    </nav>
+  );
+}
+
 /* ─────────────────────────────────────────────
-   Social — monochrome, quiet signal on hover
+   Social — one cohesive group
 ───────────────────────────────────────────── */
 
 function SocialIcon({
@@ -369,109 +424,187 @@ function SocialIcon({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      initial={{ opacity: 0, y: 8 }}
-      animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
+      initial={{ opacity: 0, y: 8, scale: 0.92 }}
+      animate={
+        active
+          ? { opacity: 1, y: 0, scale: 1 }
+          : { opacity: 0, y: 6, scale: 0.94 }
+      }
       transition={{ duration: 0.55, delay, ease: easeEditorial }}
-      className="group relative flex h-10 w-10 items-center justify-center rounded-full text-white/30 transition-colors duration-400 hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/45"
+      whileHover={{ y: -2 }}
+      whileTap={{ scale: 0.96 }}
+      className="group relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[rgba(168,196,240,0.12)] bg-[rgba(16,26,50,0.5)] text-[#6B7890] shadow-[inset_0_1px_0_rgba(232,240,255,0.04)] backdrop-blur-[8px] transition-[border-color,color,box-shadow,background-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-[rgba(184,164,255,0.32)] hover:bg-[rgba(124,92,255,0.1)] hover:text-[#D4C8FF] hover:shadow-[inset_0_1px_0_rgba(232,240,255,0.06),0_0_20px_rgba(124,92,255,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/45"
     >
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <svg
+        width="15"
+        height="15"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden
+        className="block transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
+      >
         <path d={path} />
       </svg>
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-full opacity-0 shadow-[0_0_18px_rgba(168,85,247,0.35)] transition-opacity duration-400 group-hover:opacity-100"
-      />
-      <span
-        aria-hidden
-        className="pointer-events-none absolute bottom-1 left-1/2 h-px w-0 -translate-x-1/2 bg-[#A855F7]/70 transition-[width] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-4"
-      />
     </motion.a>
   );
 }
 
+function SocialRow({ active }: { active: boolean }) {
+  return (
+    <div
+      role="list"
+      aria-label="Social links"
+      className="mx-auto flex items-center justify-center gap-3"
+    >
+      {SOCIALS.map((s, i) => (
+        <div key={s.label} role="listitem">
+          <SocialIcon
+            label={s.label}
+            href={s.href}
+            path={s.path}
+            delay={0.12 + i * 0.06}
+            active={active}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /* ─────────────────────────────────────────────
-   Journey complete — quiet 100%
+   Locations — editorial
 ───────────────────────────────────────────── */
 
-function JourneyComplete({ active }: { active: boolean }) {
+function GlobalLocations({ active }: { active: boolean }) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={active ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 1.2, delay: 0.6, ease: easeEditorial }}
-      className="mx-auto flex w-full max-w-[120px] flex-col items-center gap-2"
-      aria-hidden
+      initial={{ opacity: 0, y: 10 }}
+      animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+      transition={{ duration: 0.75, delay: 0.14, ease: easeEditorial }}
+      className="mx-auto flex w-full max-w-lg flex-col items-center"
     >
-      <div className="relative h-px w-full overflow-hidden bg-white/[0.06]">
-        <motion.div
-          className="absolute inset-y-0 left-0 bg-[#A855F7]/55"
-          initial={{ width: "0%" }}
-          animate={active ? { width: "100%" } : { width: "0%" }}
-          transition={{ duration: 1.6, delay: 0.8, ease: easeEditorial }}
-        />
-      </div>
       <p
-        className="text-[10px] font-medium uppercase tracking-[0.28em] text-white/20"
+        className="mb-2.5 text-[10px] font-medium uppercase tracking-[0.28em] text-[#6B7890]/75"
         style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
       >
-        Complete
+        Global Presence
+      </p>
+      <ul className="flex flex-wrap items-center justify-center gap-y-1.5 px-2">
+        {LOCATIONS.map((city, i) => (
+          <li key={city} className="flex items-center">
+            {i > 0 && (
+              <span
+                aria-hidden
+                className="mx-2.5 inline-block h-px w-2.5 bg-[#7C5CFF]/35 md:mx-3 md:w-3"
+              />
+            )}
+            <span
+              className="text-[12px] font-medium tracking-[0.06em] text-[#9AA8C0]/80 md:text-[12.5px]"
+              style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
+            >
+              {city}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </motion.div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Brand mark — visual signature
+───────────────────────────────────────────── */
+
+function BrandMark({ active }: { active: boolean }) {
+  const reduced = useReducedMotion();
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+      transition={{ duration: 1, delay: 0.2, ease: easeEditorial }}
+      className="relative mx-auto flex w-full max-w-sm flex-col items-center"
+    >
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-[38%] h-32 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7C5CFF]/[0.11] blur-[44px] md:h-40 md:w-64"
+        animate={
+          reduced
+            ? { opacity: 0.55 }
+            : { opacity: [0.4, 0.68, 0.4] }
+        }
+        transition={
+          reduced
+            ? { duration: 0.3 }
+            : { duration: 6, ease: "easeInOut", repeat: Infinity }
+        }
+      />
+
+      <Image
+        src="/brand/scale-12x.png"
+        alt="Scale 12x"
+        width={674}
+        height={448}
+        sizes="(max-width: 768px) 188px, 228px"
+        quality={100}
+        className="relative z-[1] mx-auto h-[88px] w-auto object-contain opacity-95 drop-shadow-[0_0_32px_rgba(124,92,255,0.3)] md:h-[108px]"
+      />
+
+      <p
+        className="relative z-[1] mt-3.5 text-[10px] font-medium uppercase tracking-[0.3em] text-[#B8A4FF]/70 md:mt-4"
+        style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
+      >
+        AI-Native Growth Studio
+      </p>
+      <p
+        className="relative z-[1] mt-2 max-w-[260px] text-center text-[12px] leading-[1.65] tracking-[0.05em] text-[#6B7890]"
+        style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
+      >
+        Growth. Strategy. Technology. Execution.
+        <br />
+        One Partner. Every Channel.
       </p>
     </motion.div>
   );
 }
 
 /* ─────────────────────────────────────────────
-   Origin point — where the story began
+   Closing signal — divider + pulse before ©
 ───────────────────────────────────────────── */
 
-function OriginPoint({ active }: { active: boolean }) {
+function ClosingSignal({ active }: { active: boolean }) {
   const reduced = useReducedMotion();
 
   return (
-    <div className="relative mx-auto mt-14 flex h-16 w-16 items-center justify-center md:mt-16">
-      <motion.span
-        aria-hidden
-        className="absolute h-10 w-10 rounded-full"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(168,85,247,0.22) 0%, transparent 70%)",
-        }}
-        initial={{ opacity: 0, scale: 0.4 }}
-        animate={
-          active
-            ? reduced
-              ? { opacity: 0.5, scale: 1 }
-              : { opacity: [0.25, 0.55, 0.25], scale: [0.92, 1.08, 0.92] }
-            : { opacity: 0, scale: 0.4 }
-        }
-        transition={
-          active && !reduced
-            ? { duration: 5.5, ease: "easeInOut", repeat: Infinity, delay: 1.2 }
-            : { duration: 1.2, delay: 1, ease: easeOutExpo }
-        }
-      />
-      <motion.span
-        aria-hidden
-        className="relative z-[1] block h-[5px] w-[5px] rounded-full bg-[#E9D5FF]"
-        style={{
-          boxShadow: "0 0 12px rgba(168,85,247,0.7), 0 0 28px rgba(168,85,247,0.3)",
-        }}
-        initial={{ opacity: 0, scale: 0 }}
-        animate={
-          active
-            ? reduced
-              ? { opacity: 0.75, scale: 1 }
-              : { opacity: [0.45, 0.9, 0.45], scale: [1, 1.2, 1] }
-            : { opacity: 0, scale: 0 }
-        }
-        transition={
-          active && !reduced
-            ? { duration: 4, ease: "easeInOut", repeat: Infinity, delay: 1.4 }
-            : { duration: 0.8, delay: 1.2, ease: easeOutExpo }
-        }
-      />
-      <span className="sr-only">Growth, amplified. One partner. Every channel. Built on AI.</span>
-    </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={active ? { opacity: 1 } : { opacity: 0 }}
+      transition={{ duration: 1, delay: 0.35, ease: easeEditorial }}
+      className="mx-auto flex w-full max-w-[160px] items-center justify-center"
+      aria-hidden
+    >
+      <div className="flex w-full items-center gap-2.5">
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/[0.1]" />
+        <motion.span
+          className="relative block h-[4px] w-[4px] shrink-0 rounded-full bg-[#D4C8FF]"
+          style={{
+            boxShadow:
+              "0 0 8px rgba(124,92,255,0.6), 0 0 18px rgba(124,92,255,0.25)",
+          }}
+          animate={
+            active && !reduced
+              ? { opacity: [0.45, 0.95, 0.45], scale: [1, 1.2, 1] }
+              : { opacity: active ? 0.7 : 0, scale: 1 }
+          }
+          transition={
+            active && !reduced
+              ? { duration: 3.8, ease: "easeInOut", repeat: Infinity }
+              : { duration: 0.6 }
+          }
+        />
+        <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/[0.1]" />
+      </div>
+    </motion.div>
   );
 }
 
@@ -492,48 +625,49 @@ export function ClosingChapter() {
   });
   const headlineInView = useInView(headlineRef, { once: false, amount: 0.4 });
   const ctaInView = useInView(ctaRef, { once: false, amount: 0.45 });
-  const metaInView = useInView(metaRef, { once: false, amount: 0.3 });
+  const metaInView = useInView(metaRef, { once: false, amount: 0.25 });
   const reduced = useReducedMotion();
 
   const [ctaHover, setCtaHover] = useState(false);
   const sceneActive = (inView || headlineInView) && !reduced;
+  const navActive = metaInView || headlineInView;
 
   return (
     <footer
       ref={sectionRef}
       id="contact"
-      aria-label="Contact Amplify IT & Media"
-      className="relative z-0 -mt-24 overflow-hidden pb-16 pt-8 md:-mt-32 md:pb-20 md:pt-12"
+      aria-label="Contact Scale 12x"
+      className="relative z-0 -mt-28 overflow-hidden pb-6 pt-2 md:-mt-36 md:pb-7 md:pt-3"
     >
-      {/* Absolute black descent — calmest atmosphere */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#030208]/40 via-[#020106]/85 to-[#000000]"
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#050814]/40 via-[#02040A]/85 to-[#02040A]"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[20%] z-[1] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[#A855F7]/[0.03] blur-[120px]"
+        className="pointer-events-none absolute left-1/2 top-[18%] z-[1] h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-[#7C5CFF]/[0.04] blur-[120px]"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-40 bg-gradient-to-b from-[#030208]/50 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-16 bg-gradient-to-b from-[#050814]/50 to-transparent"
       />
 
-      <div className="relative z-[6] mx-auto flex max-w-[920px] flex-col items-center px-5 text-center md:px-8">
+      {/* Single centered column — one optical vertical axis */}
+      <div className="relative z-[6] mx-auto flex w-full max-w-[720px] flex-col items-center px-5 text-center md:px-8">
         <SignalCompletion active={sceneActive} />
 
-        {/* Editorial centerpiece */}
-        <div ref={headlineRef} className="mb-8 md:mb-10">
+        {/* ── CTA chapter ── */}
+        <div ref={headlineRef} className="flex w-full flex-col items-center">
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={
               headlineInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
             }
             transition={{ duration: 0.75, ease: easeEditorial }}
-            className="mb-5 text-[11px] font-medium uppercase tracking-[0.34em] text-[#A855F7]/60 md:mb-6"
+            className="mb-3 text-[11px] font-medium uppercase tracking-[0.36em] text-[#7C5CFF]/70"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            Growth, amplified.
+            Ready to Scale?
           </motion.p>
 
           <motion.h2
@@ -542,10 +676,10 @@ export function ClosingChapter() {
               headlineInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
             }
             transition={{ duration: 1.05, delay: 0.08, ease: easeEditorial }}
-            className="mx-auto max-w-4xl text-[2.75rem] font-medium leading-[1.05] tracking-[-0.04em] text-white md:text-6xl lg:text-[5rem] xl:text-[5.5rem]"
+            className="max-w-4xl text-[2.75rem] font-medium leading-[1.02] tracking-[-0.045em] text-white md:text-[3.75rem] lg:text-[4.75rem] xl:text-[5.25rem]"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            Let&apos;s grow.
+            Let&apos;s Scale.
           </motion.h2>
 
           <motion.p
@@ -554,15 +688,20 @@ export function ClosingChapter() {
               headlineInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }
             }
             transition={{ duration: 0.9, delay: 0.22, ease: easeEditorial }}
-            className="mx-auto mt-6 max-w-lg text-[15px] leading-relaxed text-white/35 md:mt-7 md:text-base"
+            className="mt-3 max-w-[340px] text-[15px] leading-[1.55] text-[#9AA8C0]/90 md:mt-3.5 md:max-w-[380px] md:text-[15.5px]"
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
           >
-            One partner. Every channel. Built on AI. The next move is yours.
+            One partner. Every channel. Built on AI.
+            <span className="mt-1 block text-[#6B7890]">
+              The next move is yours.
+            </span>
           </motion.p>
         </div>
 
-        {/* CTA destination */}
-        <div ref={ctaRef} className="relative mb-20 w-full md:mb-28">
+        <div
+          ref={ctaRef}
+          className="relative mt-6 flex w-full flex-col items-center md:mt-7"
+        >
           <CtaSignal active={ctaInView && !reduced} hovering={ctaHover} />
           <ClosingCTA
             active={ctaInView || !!reduced}
@@ -570,105 +709,65 @@ export function ClosingChapter() {
           />
         </div>
 
-        {/* Destinations */}
-        <nav
-          aria-label="Essential destinations"
-          className="mb-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 md:mb-20 md:gap-x-10"
+        {/* ── Meta chapter ── */}
+        <div
+          ref={metaRef}
+          className="mt-11 flex w-full flex-col items-center md:mt-12"
         >
-          {DESTINATIONS.map((d, i) => (
-            <DestinationLink
-              key={d.href}
-              label={d.label}
-              href={d.href}
-              delay={0.08 + i * 0.05}
-              active={metaInView || headlineInView}
-            />
-          ))}
-        </nav>
+          <FooterNav active={navActive} />
 
-        {/* Manifesto */}
-        <div ref={metaRef} className="mb-16 max-w-xl md:mb-20">
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={
               metaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
             }
             transition={{ duration: 0.9, ease: easeEditorial }}
-            className="text-[17px] leading-[1.65] tracking-[-0.015em] text-white/45 md:text-[19px] md:leading-[1.7]"
+            className="mt-9 max-w-[480px] text-[15.5px] leading-[1.68] tracking-[-0.012em] text-[#9AA8C0] md:mt-10 md:text-[17px] md:leading-[1.7]"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
-            For US businesses tired of juggling five agencies to grow — Amplify
-            delivers everything with the speed of a startup and the depth of an
-            enterprise team.
+            For ambitious companies ready to scale exponentially, Scale 12x
+            delivers AI-native growth with the speed of a startup and the depth
+            of an enterprise team — across every channel, as one partner.
+          </motion.p>
+
+          <motion.a
+            href="mailto:hello@scale12x.com"
+            initial={{ opacity: 0, y: 10 }}
+            animate={metaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: easeEditorial }}
+            className="mt-6 text-[13.5px] tracking-[0.04em] text-white/45 transition-colors duration-400 hover:text-[#D4C8FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C5CFF]/45 md:mt-7"
+            style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
+          >
+            hello@scale12x.com
+          </motion.a>
+
+          <div className="mt-5 w-full md:mt-6">
+            <GlobalLocations active={metaInView} />
+          </div>
+
+          <div className="mt-7 md:mt-8">
+            <SocialRow active={metaInView} />
+          </div>
+
+          {/* Brand signature — more air above, tighter internal stack */}
+          <div className="mt-10 w-full md:mt-11">
+            <BrandMark active={metaInView} />
+          </div>
+
+          <div className="mt-7 w-full md:mt-8">
+            <ClosingSignal active={metaInView && !reduced} />
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={metaInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: easeEditorial }}
+            className="mt-4 text-[11px] tracking-[0.1em] text-[#4A5568]"
+            style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
+          >
+            © {new Date().getFullYear()} Scale 12x. Scale Faster. Scale Smarter.
           </motion.p>
         </div>
-
-        {/* Contact signature */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={metaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-          transition={{ duration: 0.75, delay: 0.12, ease: easeEditorial }}
-          className="mb-12 flex flex-col items-center gap-3 md:mb-14"
-        >
-          <a
-            href="mailto:hello@amplifyitmedia.com"
-            className="text-[14px] tracking-[0.02em] text-white/50 transition-colors duration-400 hover:text-[#E9D5FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A855F7]/45"
-            style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
-          >
-            hello@amplifyitmedia.com
-          </a>
-          <p
-            className="text-[13px] tracking-[0.06em] text-white/25"
-            style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
-          >
-            Global talent · US pricing
-          </p>
-        </motion.div>
-
-        {/* Social */}
-        <div className="mb-14 flex items-center justify-center gap-5 md:mb-16 md:gap-6">
-          {SOCIALS.map((s, i) => (
-            <SocialIcon
-              key={s.label}
-              label={s.label}
-              href={s.href}
-              path={s.path}
-              delay={0.15 + i * 0.06}
-              active={metaInView}
-            />
-          ))}
-        </div>
-
-        {/* Brand mark */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={metaInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1, delay: 0.25, ease: easeEditorial }}
-          className="mb-10"
-        >
-          <Image
-            src="/logo.png"
-            alt="Amplify"
-            width={72}
-            height={72}
-            className="mx-auto h-[72px] w-[72px] object-contain opacity-70 drop-shadow-[0_0_20px_rgba(168,85,247,0.35)]"
-          />
-        </motion.div>
-
-        <JourneyComplete active={metaInView && !reduced} />
-
-        {/* Origin point — full circle */}
-        <OriginPoint active={metaInView || ctaInView} />
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={metaInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: easeEditorial }}
-          className="mt-8 text-[11px] tracking-[0.08em] text-white/18"
-          style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
-        >
-          © {new Date().getFullYear()} Amplify IT & Media. Growth, amplified.
-        </motion.p>
       </div>
     </footer>
   );
